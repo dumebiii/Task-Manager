@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "472913187618",
+    "project_id": "task-ef8e6",
+    "storage_bucket": "task-ef8e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472913187618:android:f0af99901f717d108c0b7b",
+        "android_client_info": {
+          "package_name": "com.example.wow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472913187618-4p0vq01oojrmhkbstpdvpkr7crkaii05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN4eggx39r4wsO0zidIMNmmuYuVDoGX6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472913187618-4p0vq01oojrmhkbstpdvpkr7crkaii05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
