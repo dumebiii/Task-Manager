@@ -167,15 +167,14 @@ class _SignUpState extends State<SignUp> {
                                       googlesignWidget(
                                         // todo: (() => regist.gregister()),
                                         todo: () async {
+                                          showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (context) => const Center(
+                                                  child:
+                                                      CircularProgressIndicator()));
                                           try {
-                                            showDialog(
-                                                context: context,
-                                                barrierDismissible: false,
-                                                builder: (context) => const Center(
-                                                    child: Center(
-                                                        child:
-                                                            CircularProgressIndicator())));
-                                            await regist.gregister();
+                                            await logi.gregister();
                                             final _user =
                                                 await logi.fetchdetails();
                                             if (_user == null) {

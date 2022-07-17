@@ -142,16 +142,21 @@ class _SignInState extends State<SignIn> {
                             },
                           ),
                           googlesignWidget(todo: () async {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) => const Center(
+                                    child: CircularProgressIndicator()));
                             try {
                               await logi.gregister();
                               final _user = await logi.fetchdetails();
                               if (_user == null) {
                                 Navigator.pushNamed(context, '/user');
-                                debugPrint('this is null');
                               } else {
                                 Navigator.pushNamed(context, '/home');
                               }
                             } on FirebaseAuthException catch (e) {
+                              Navigator.pop(context);
                               var message = e.message;
                               return _showalertdialog(message!);
                             }

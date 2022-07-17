@@ -27,10 +27,10 @@ class RegisterViewmodel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void Function()?> gregister() async {
-    _firebaseservice.googleLogin();
-    return null;
-  }
+  // Future<void Function()?> gregister() async {
+  //   _firebaseservice.googleLogin();
+  //   return null;
+  // }
 
   Future<void Function()?> register() async {
     await _firebaseservice.signUp(
