@@ -19,8 +19,6 @@ GetIt locator = GetIt.instance;
 Future<void> setUpserviceLocator() async {
   locator.registerSingleton<AuthProvider>(AuthProvider());
   locator.registerSingleton<NotesOpertaion>(NotesOpertaion());
-  locator.registerSingleton<ConnectivityService>(ConnectivityService());
-  locator.registerSingleton<InternetProvider>(InternetProvider());
 
   locator.registerFactory<RegisterViewmodel>(() => RegisterViewmodel());
   locator.registerFactory<LoginViewModel>(() => LoginViewModel());

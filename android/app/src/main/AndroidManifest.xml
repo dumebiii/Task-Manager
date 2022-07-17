@@ -3,7 +3,7 @@
    <application
         android:label="Taskk"
         android:name="${applicationName}"
-        android:icon="@mipmap/ssplash">
+        android:icon="@mipmap/sssplash">
         <activity
             android:name=".MainActivity"
             android:exported="true"

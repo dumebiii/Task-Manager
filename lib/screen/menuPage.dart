@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
+import 'package:wow/screen/introScreen.dart';
 import 'package:wow/service/firebase_services.dart';
 
 import '../widget/reuse_widget.dart';
@@ -21,7 +23,7 @@ class _MenuState extends State<Menu> {
         backgroundColor: Colors.blueGrey,
         body: SafeArea(
           child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 170, 20, 0),
+              padding: EdgeInsets.fromLTRB(20.w, 170.h, 20.w, 0.h),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -31,32 +33,34 @@ class _MenuState extends State<Menu> {
                         // <-- ElevatedButton
                         onPressed: (() =>
                             Navigator.pushNamed(context, '/account')),
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.person_pin,
-                          size: 50.0,
+                          size: 50.0.r,
                           color: Colors.white,
                         ),
-                        label: const Text(
+                        label: Text(
                           'Account',
-                          style: const TextStyle(
-                            fontSize: 35,
+                          textScaleFactor: 1.0,
+                          style: TextStyle(
+                            fontSize: 35.r,
                             color: Colors.white,
                           ),
                         )),
-                    const SizedBox(
-                      height: 50,
+                    SizedBox(
+                      height: 20.h,
                     ),
                     TextButton.icon(
                         onPressed: () {},
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.dashboard,
-                          size: 50.0,
+                          size: 50.0.r,
                           color: Colors.white,
                         ),
-                        label: const Text(
+                        label: Text(
                           'Categories',
-                          style: const TextStyle(
-                            fontSize: 35,
+                          textScaleFactor: 1.0,
+                          style: TextStyle(
+                            fontSize: 35.sp,
                             color: Colors.white,
                           ),
                         )),
@@ -64,48 +68,54 @@ class _MenuState extends State<Menu> {
                         child: Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20.r)),
                       child: TextButton(
                           onPressed: () =>
                               Navigator.pushNamed(context, '/personal'),
-                          child: const Text(
+                          child: Text(
                             'Personal',
+                            textScaleFactor: 1.0,
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 25.sp,
                               color: Colors.blueGrey,
                             ),
                           )),
                     )),
-                    const SizedBox(
-                      height: 15,
+                    SizedBox(
+                      height: 15.h,
                     ),
                     Center(
                         child: Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20.r)),
                       child: TextButton(
                           onPressed: () =>
                               Navigator.pushNamed(context, '/business'),
-                          child: const Text(
+                          child: Text(
                             'Business',
+                            textScaleFactor: 1.0,
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 25.sp,
                               color: Colors.blueGrey,
                             ),
                           )),
                     )),
-                    const SizedBox(
-                      height: 50,
+                    SizedBox(
+                      height: 50.h,
                     ),
                     signInlogInwidget(
                         todoText: 'Sign Out ',
                         todo: () async {
                           await authh.logOut();
-                          Navigator.pushNamed(context, 'intro');
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const LoadScreen()));
                         }),
-                    const SizedBox(
-                      height: 50,
+                    SizedBox(
+                      height: 50.h,
                     ),
                   ],
                 ),

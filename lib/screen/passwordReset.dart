@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wow/buisness_logic/view_model/resertWordViewModel.dart';
 import 'package:wow/widget/reuse_widget.dart';
 
@@ -27,7 +28,7 @@ class _PasswordResetState extends State<PasswordReset> {
     return Scaffold(
         body: SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -36,24 +37,25 @@ class _PasswordResetState extends State<PasswordReset> {
                 Navigator.pushNamed(context, '/login');
               },
               child: CircleAvatar(
-                  radius: 30,
+                  radius: 30.r,
                   backgroundColor: Colors.blueGrey[100],
-                  child: const Icon(
+                  child: Icon(
                     Icons.arrow_upward,
                     color: Colors.blueGrey,
-                    size: 40,
+                    size: 40.r,
                   )),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Your Email ',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style:
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: 10.h,
                 ),
                 Form(
                     child: emailtextfield_widg(

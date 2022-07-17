@@ -1,6 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -36,9 +37,9 @@ class _UserddState extends State<Userdd> {
               body: SingleChildScrollView(
                   child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(top: 20.h),
                   child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      margin: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -47,29 +48,29 @@ class _UserddState extends State<Userdd> {
                                 Navigator.pushNamed(context, 'intro');
                               },
                               child: CircleAvatar(
-                                  radius: 30,
+                                  radius: 30.r,
                                   backgroundColor: Colors.blueGrey[100],
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.arrow_back,
                                     color: Colors.blueGrey,
-                                    size: 40,
+                                    size: 40.r,
                                   )),
                             ),
-                            const SizedBox(
-                              height: 10,
+                            SizedBox(
+                              height: 10.h,
                             ),
-                            const Text(
+                            Text(
                               'Personal',
                               style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.bold),
+                                  fontSize: 40.sp, fontWeight: FontWeight.bold),
                             ),
-                            const Text(
+                            Text(
                               'Information',
                               style: TextStyle(
-                                  fontSize: 40, fontWeight: FontWeight.bold),
+                                  fontSize: 40.sp, fontWeight: FontWeight.bold),
                             ),
-                            const SizedBox(
-                              height: 15,
+                            SizedBox(
+                              height: 15.h,
                             ),
                             Form(
                                 key: _formKey,
@@ -78,14 +79,14 @@ class _UserddState extends State<Userdd> {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      const Text(
+                                      Text(
                                         'First name',
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 18.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      const SizedBox(
-                                        height: 10,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
                                       CustomTextField(
                                         textfieldcontroller:
@@ -93,17 +94,17 @@ class _UserddState extends State<Userdd> {
                                         textfieldValidator:
                                             userInfo.textfieldValidator,
                                       ),
-                                      const SizedBox(
-                                        height: 10,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
-                                      const Text(
+                                      Text(
                                         'Last name',
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 18.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      const SizedBox(
-                                        height: 10,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
                                       CustomTextField(
                                         textfieldcontroller:
@@ -111,17 +112,17 @@ class _UserddState extends State<Userdd> {
                                         textfieldValidator:
                                             userInfo.textfieldValidator,
                                       ),
-                                      const SizedBox(
-                                        height: 20,
+                                      SizedBox(
+                                        height: 20.h,
                                       ),
-                                      const Text(
+                                      Text(
                                         'Nationality',
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 18.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      const SizedBox(
-                                        height: 10,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
                                       Column(children: [
                                         ///Adding CSC Picker Widget in app
@@ -139,23 +140,24 @@ class _UserddState extends State<Userdd> {
                                           ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                                           dropdownDecoration: BoxDecoration(
                                               borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
+                                                  Radius.circular(10.r)),
                                               color: Colors.blueGrey[100],
                                               border: Border.all(
                                                   color: Colors.grey.shade300,
-                                                  width: 1)),
+                                                  width: 1.w)),
 
                                           ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
                                           disabledDropdownDecoration:
                                               BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.all(
-                                                          Radius.circular(10)),
+                                                          Radius.circular(
+                                                              10.r)),
                                                   color: Colors.grey.shade300,
                                                   border: Border.all(
                                                       color:
                                                           Colors.grey.shade300,
-                                                      width: 1)),
+                                                      width: 1.w)),
 
                                           ///placeholders for dropdown search field
                                           countrySearchPlaceholder: "Country",
@@ -169,19 +171,19 @@ class _UserddState extends State<Userdd> {
 
                                           selectedItemStyle: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 19,
+                                            fontSize: 19.sp,
                                           ),
 
                                           ///DropdownDialog Heading style [OPTIONAL PARAMETER]
                                           dropdownHeadingStyle: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 17,
+                                              fontSize: 17.sp,
                                               fontWeight: FontWeight.bold),
 
                                           ///DropdownDialog Item style [OPTIONAL PARAMETER]
                                           dropdownItemStyle: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 14,
+                                            fontSize: 14.sp,
                                           ),
 
                                           ///Dialog box radius [OPTIONAL PARAMETER]
@@ -215,30 +217,30 @@ class _UserddState extends State<Userdd> {
                                           },
                                         ),
                                       ]),
-                                      const SizedBox(
-                                        height: 20,
+                                      SizedBox(
+                                        height: 20.h,
                                       ),
-                                      const Text(
+                                      Text(
                                         'Date of birth ',
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 18.sp,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      const SizedBox(
-                                        height: 10,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
                                       ElevatedButton(
                                         autofocus: true,
                                         style: ElevatedButton.styleFrom(
-                                          minimumSize: const Size(0, 50),
+                                          minimumSize: Size(0.w, 50.h),
                                           primary: Colors.blueGrey[100],
                                           elevation: 2,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(15),
+                                                BorderRadius.circular(15.r),
                                             side: BorderSide(
                                                 color: Colors.transparent,
-                                                width: 2),
+                                                width: 2.w),
                                           ),
                                         ),
                                         child: Container(
@@ -252,7 +254,7 @@ class _UserddState extends State<Userdd> {
                                                       .toString(),
                                               style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 15,
+                                                  fontSize: 15.sp,
                                                   fontWeight: FontWeight.w400),
                                             )
                                           ]),
@@ -262,11 +264,11 @@ class _UserddState extends State<Userdd> {
                                           print(userInfo.selectedDate);
                                         },
                                       ),
-                                      const SizedBox(
-                                        height: 20,
+                                      SizedBox(
+                                        height: 20.h,
                                       ),
                                       Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: EdgeInsets.all(8.0.r),
                                           child: ElevatedButton(
                                             onPressed: () async {
                                               if (_formKey.currentState!
@@ -277,7 +279,7 @@ class _UserddState extends State<Userdd> {
                                               }
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              minimumSize: const Size(0, 50),
+                                              minimumSize: Size(0.w, 50.h),
                                               primary: Colors.blueGrey,
                                               elevation: 10,
                                               shape: RoundedRectangleBorder(
@@ -285,12 +287,12 @@ class _UserddState extends State<Userdd> {
                                                     BorderRadius.circular(15),
                                               ),
                                             ),
-                                            child: const Center(
+                                            child: Center(
                                               child: Text(
                                                 'Continue ',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 20),
+                                                    fontSize: 20.sp),
                                               ),
                                             ),
                                           )),
@@ -306,7 +308,7 @@ class _UserddState extends State<Userdd> {
         context: context,
         builder: (BuildContext builder) {
           return Container(
-            height: MediaQuery.of(context).copyWith().size.height * 0.25,
+            height: MediaQuery.of(context).copyWith().size.height * 0.25.h,
             color: Colors.white,
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
@@ -320,7 +322,7 @@ class _UserddState extends State<Userdd> {
               },
               initialDateTime: DateTime.now(),
               minimumYear: 1800,
-              maximumYear: 2090,
+              maximumYear: DateTime.now().year,
             ),
           );
         });

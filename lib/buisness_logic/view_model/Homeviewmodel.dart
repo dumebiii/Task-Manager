@@ -7,7 +7,7 @@ import '../../service/service_locator.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final AuthProvider firebaseservice = locator<AuthProvider>();
-  final NotesOpertaion notesOpertaion = locator<NotesOpertaion>();
+
   Future fetchdetails() async {
     var collection = firebaseservice.store.collection('Usser');
     //userUid is the current auth user

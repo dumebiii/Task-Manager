@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wow/buisness_logic/view_model/loginViewmodel.dart';
@@ -38,9 +39,9 @@ class _SignUpState extends State<SignUp> {
             body: SingleChildScrollView(
                 child: SafeArea(
                     child: Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(top: 20.h),
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          margin: EdgeInsets.symmetric(horizontal: 20.h),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -49,31 +50,31 @@ class _SignUpState extends State<SignUp> {
                                     Navigator.pushNamed(context, 'intro');
                                   },
                                   child: CircleAvatar(
-                                      radius: 30,
+                                      radius: 30.r,
                                       backgroundColor: Colors.blueGrey[100],
-                                      child: const Icon(
+                                      child: Icon(
                                         Icons.arrow_back,
                                         color: Colors.blueGrey,
-                                        size: 40,
+                                        size: 40.r,
                                       )),
                                 ),
-                                const SizedBox(
-                                  height: 10,
+                                SizedBox(
+                                  height: 10.h,
                                 ),
-                                const Text(
+                                Text(
                                   'Create',
                                   style: TextStyle(
-                                      fontSize: 40,
+                                      fontSize: 40.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                const Text(
+                                Text(
                                   'Account',
                                   style: TextStyle(
-                                      fontSize: 40,
+                                      fontSize: 40.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(
-                                  height: 15,
+                                SizedBox(
+                                  height: 15.h,
                                 ),
                                 Form(
                                     key: _formKey,
@@ -83,31 +84,31 @@ class _SignUpState extends State<SignUp> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          const Text(
+                                          Text(
                                             'Your Email',
                                             style: TextStyle(
-                                                fontSize: 18,
+                                                fontSize: 18.sp,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          const SizedBox(
-                                            height: 10,
+                                          SizedBox(
+                                            height: 10.h,
                                           ),
                                           emailtextfield_widg(
                                             validator: regist.emailValidator,
                                             emailcontroller:
                                                 regist.emailController,
                                           ),
-                                          const SizedBox(
-                                            height: 10,
+                                          SizedBox(
+                                            height: 10.h,
                                           ),
-                                          const Text(
+                                          Text(
                                             'Password',
                                             style: TextStyle(
-                                                fontSize: 18,
+                                                fontSize: 18.sp,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          const SizedBox(
-                                            height: 10,
+                                          SizedBox(
+                                            height: 10.h,
                                           ),
                                           passtextfieldWidget(
                                               sufixIcon: GestureDetector(
@@ -130,8 +131,8 @@ class _SignUpState extends State<SignUp> {
                                                   regist.passwordVisible,
                                               passwordcontroller:
                                                   regist.passwordController),
-                                          const SizedBox(
-                                            height: 10,
+                                          SizedBox(
+                                            height: 10.h,
                                           ),
                                         ])),
                                 Consumer<RegisterViewmodel>(
@@ -196,21 +197,22 @@ class _SignUpState extends State<SignUp> {
                                     ],
                                   );
                                 }),
-                                const SizedBox(
-                                  height: 10,
+                                SizedBox(
+                                  height: 10.h,
                                 ),
                                 Center(
                                   child: RichText(
                                     text: TextSpan(
                                         text: 'Already have an account?',
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 18),
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18.sp),
                                         children: <TextSpan>[
                                           TextSpan(
                                               text: ' Log In',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   color: Colors.blueGrey,
-                                                  fontSize: 18),
+                                                  fontSize: 18.sp),
                                               recognizer: TapGestureRecognizer()
                                                 ..onTap = () {
                                                   Navigator.pushNamed(
@@ -232,12 +234,12 @@ class _SignUpState extends State<SignUp> {
       buttons: [
         DialogButton(
           color: Colors.blueGrey,
-          child: const Text(
+          child: Text(
             "OK",
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize: 20.sp),
           ),
           onPressed: () => Navigator.pop(context),
-          width: 120,
+          width: 120.w,
         )
       ],
     ).show();

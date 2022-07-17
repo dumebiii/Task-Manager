@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -19,7 +20,7 @@ class _BuisnessState extends State<Buisness> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           child: Column(
             children: [
               GestureDetector(
@@ -27,21 +28,21 @@ class _BuisnessState extends State<Buisness> {
                   Navigator.pushNamed(context, '/home');
                 },
                 child: CircleAvatar(
-                    radius: 30,
+                    radius: 30.r,
                     backgroundColor: Colors.blueGrey[100],
-                    child: const Icon(
+                    child: Icon(
                       Icons.arrow_upward,
                       color: Colors.blueGrey,
-                      size: 40,
+                      size: 40.r,
                     )),
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: 40.h,
               ),
-              const Text(
+              Text(
                 'Business Tasks',
                 style: TextStyle(
-                    fontSize: 35,
+                    fontSize: 35.sp,
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.bold),
               ),
@@ -73,11 +74,11 @@ class NotessCard extends StatelessWidget {
     return Consumer<NotesOpertaion>(builder: (context, nott, child) {
       return SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          height: 100,
+          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          height: 100.h,
           decoration: BoxDecoration(
             color: Colors.blueGrey,
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,12 +100,13 @@ class NotessCard extends StatelessWidget {
                       desc: notes.description,
                       buttons: [
                         DialogButton(
-                          child: const Text(
+                          child: Text(
                             "S E E N",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20.sp),
                           ),
                           onPressed: () => Navigator.pop(context),
-                          width: 120,
+                          width: 120.w,
                         )
                       ],
                     ).show();
@@ -114,9 +116,9 @@ class NotessCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
 
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold),
                     // style: TextStyle(decoration: TextDecoration.lineThrough),
                   ),
@@ -136,39 +138,41 @@ class NotessCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(notes.choice,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.white,
-                          fontSize: 17,
+                          fontSize: 17.sp,
                           fontWeight: FontWeight.bold)),
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.calendar_month_rounded,
                         color: Colors.white,
+                        size: 20.r,
                       ),
-                      const SizedBox(
-                        width: 5,
+                      SizedBox(
+                        width: 5.w,
                       ),
                       Text(notes.datee,
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.bold)),
                     ],
                   ),
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.access_time_outlined,
                         color: Colors.white,
+                        size: 20.r,
                       ),
-                      const SizedBox(
-                        width: 5,
+                      SizedBox(
+                        width: 5.w,
                       ),
                       Text(notes.dateTime,
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.bold)),
                     ],
                   ),

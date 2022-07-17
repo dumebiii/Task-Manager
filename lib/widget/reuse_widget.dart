@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 ///strightTxTField widget
@@ -34,9 +35,9 @@ class straightField extends StatelessWidget {
         // onChanged: (value) {
         //   textfieldcontroller = value;
         // },
-        style: const TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 20.sp),
         cursorColor: Colors.blueGrey,
-        cursorHeight: 30,
+        cursorHeight: 30.h,
         textAlign: TextAlign.center,
         decoration: InputDecoration(
           hintText: hintText,
@@ -68,7 +69,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
         validator: textfieldValidator,
         cursorColor: Colors.black,
-        cursorHeight: 25,
+        cursorHeight: 25.h,
         keyboardType: TextInputType.text,
         autofocus: true,
         controller: textfieldcontroller,
@@ -76,7 +77,7 @@ class CustomTextField extends StatelessWidget {
           fillColor: Colors.blueGrey[100],
           filled: true,
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10.0.r),
               borderSide: BorderSide.none),
         ));
   }
@@ -105,7 +106,7 @@ class passtextfieldWidget extends StatelessWidget {
     return TextFormField(
       validator: passwordvalidator,
       cursorColor: Colors.black,
-      cursorHeight: 25,
+      cursorHeight: 25.h,
       obscureText: passwordVisible,
       keyboardType: TextInputType.visiblePassword,
       autofocus: true,
@@ -115,7 +116,7 @@ class passtextfieldWidget extends StatelessWidget {
         fillColor: Colors.blueGrey[100],
         filled: true,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(10.0.r),
             borderSide: BorderSide.none),
       ),
     );
@@ -140,7 +141,7 @@ class emailtextfield_widg extends StatelessWidget {
     return TextFormField(
         validator: validator,
         cursorColor: Colors.black,
-        cursorHeight: 25,
+        cursorHeight: 25.h,
         keyboardType: TextInputType.emailAddress,
         autofocus: true,
         controller: emailcontroller,
@@ -148,7 +149,7 @@ class emailtextfield_widg extends StatelessWidget {
           fillColor: Colors.blueGrey[100],
           filled: true,
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(10.0.r),
               borderSide: BorderSide.none),
         ));
   }
@@ -168,15 +169,15 @@ class googlesignWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.0.r),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            minimumSize: const Size(0, 50),
+            minimumSize: Size(0.w, 50.h),
             primary: Colors.white,
             elevation: 2,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-              side: const BorderSide(color: Colors.blueGrey, width: 2),
+              borderRadius: BorderRadius.circular(15.r),
+              side: BorderSide(color: Colors.blueGrey, width: 2.w),
             ),
           ),
           onPressed: todo,
@@ -187,17 +188,17 @@ class googlesignWidget extends StatelessWidget {
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Image(
                   image: AssetImage("assets/images/google_logo.png"),
-                  height: 35.0,
+                  height: 35.0.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 10.w),
                   child: Text(
                     'Sign in with Google',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       color: Colors.blueGrey,
                       fontWeight: FontWeight.w600,
                     ),
@@ -221,21 +222,21 @@ class signInlogInwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0.r),
         child: ElevatedButton(
           onPressed: todo,
           style: ElevatedButton.styleFrom(
-            minimumSize: const Size(0, 50),
+            minimumSize: Size(0.w, 50.h),
             primary: Colors.blueGrey,
             elevation: 10,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(15.r),
             ),
           ),
           child: Center(
             child: Text(
               todoText,
-              style: const TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 25.sp),
             ),
           ),
         ));
@@ -255,24 +256,22 @@ class accInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Container(
-          height: 50,
-          width: 250,
-          decoration: BoxDecoration(
-              color: Colors.blueGrey, borderRadius: BorderRadius.circular(15)),
-          child: Center(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: childd,
-            // child: Text(userInfo,
-            //     overflow: TextOverflow.ellipsis,
-            //     style: const TextStyle(
-            //         color: Colors.white,
-            //         fontSize: 20,
-            //         fontWeight: FontWeight.bold)),
-          ))),
-    );
+    return Container(
+        height: 50.h,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Colors.blueGrey, borderRadius: BorderRadius.circular(10.r)),
+        child: Center(
+            child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          child: childd,
+          // child: Text(userInfo,
+          //     overflow: TextOverflow.ellipsis,
+          //     style: const TextStyle(
+          //         color: Colors.white,
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.bold)),
+        )));
   }
 }
 
@@ -305,8 +304,8 @@ class DueText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-          color: Colors.blueGrey, fontSize: 21, fontWeight: FontWeight.bold),
+      style: TextStyle(
+          color: Colors.blueGrey, fontSize: 21.sp, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -332,22 +331,17 @@ class Duegesture extends StatelessWidget {
         // onTap: () {
         //   selectTime(context);
         // },
-        child: Container(
-            height: 22,
-            width: 150,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(20)),
-            child: Center(
-              child: child,
-              // child:
-              //     ? Text(
-              //         DateFormat.MMMMEEEEd()
+        child: Center(
+          child: child,
+          // child:
+          //     ? Text(
+          //         DateFormat.MMMMEEEEd()
 
-              //             // displaying formatted date
-              //             .format(DateTime
-              //                 .now()),
-              //     Text('${hour}:${min}')),
-            )));
+          //             // displaying formatted date
+          //             .format(DateTime
+          //                 .now()),
+          //     Text('${hour}:${min}')),
+        ));
   }
 }
 
@@ -367,13 +361,13 @@ class homeCatWidg extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.blueGrey, borderRadius: BorderRadius.circular(20)),
-      height: 130,
-      width: 240,
+          color: Colors.blueGrey, borderRadius: BorderRadius.circular(20.r)),
+      height: 130.h,
+      width: 240.w,
       child: GestureDetector(
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -386,8 +380,8 @@ class homeCatWidg extends StatelessWidget {
               ),
               Text(
                 catText,
-                style: const TextStyle(
-                    fontSize: 35,
+                style: TextStyle(
+                    fontSize: 35.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),

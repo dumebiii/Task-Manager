@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoadScreen extends StatefulWidget {
   const LoadScreen({Key? key}) : super(key: key);
@@ -23,27 +24,28 @@ class _LoadScreenState extends State<LoadScreen> {
                 ButtonBarSuper(
                   //  wrapType: wrapType,
                   //  wrapFit: wrapFit,
-                  spacing: 2.0, // Horizontal spacing between buttons.
-                  lineSpacing: 10.0, // Vertical spacing between button lines.
-                  buttonHeight: 48,
-                  buttonMinWidth: 20,
+                  spacing: 2.0.r, // Horizontal spacing between buttons.
+                  lineSpacing: 8.0.r, // Vertical spacing between button lines.
+                  buttonHeight: 48.h,
+                  buttonMinWidth: 20.w,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 80),
+                      padding: EdgeInsets.only(left: 60.w),
                       child: Container(
-                        height: 50,
-                        width: 50,
+                        height: 50.h,
+                        width: 50.w,
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(25)),
+                            borderRadius: BorderRadius.circular(25.r)),
                         child: TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/login');
                           },
-                          child: const Text(
+                          child: Text(
                             'Log In ',
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 25.sp,
+                              fontWeight: FontWeight.w600,
                               color: Color(0xff607d8b),
                             ),
                           ),
@@ -51,21 +53,21 @@ class _LoadScreenState extends State<LoadScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 80),
+                      padding: EdgeInsets.only(right: 60.w),
                       child: Container(
-                        height: 50,
-                        width: 50,
+                        height: 50.h,
+                        width: 50.w,
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(25)),
+                            borderRadius: BorderRadius.circular(25.r)),
                         child: TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/signup');
                           },
-                          child: const Text(
+                          child: Text(
                             'Sign Up ',
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 25.sp,
                               fontWeight: FontWeight.w600,
                               color: Color(0xff607d8b),
                             ),

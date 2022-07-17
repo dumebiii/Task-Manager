@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:wow/widget/reuse_widget.dart';
@@ -65,57 +66,60 @@ class _AccountState extends State<Account> {
                           TextEditingController(text: data['state']);
 
                       return SafeArea(
-                        child: SingleChildScrollView(
-                          child: Center(
+                          child: SingleChildScrollView(
+                        child: Center(
                             child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 10),
-                                child: Form(
-                                  key: _formKey,
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, '/home');
-                                          },
-                                          child: CircleAvatar(
-                                              radius: 30,
-                                              backgroundColor:
-                                                  Colors.blueGrey[100],
-                                              child: const Icon(
-                                                Icons.arrow_upward,
-                                                color: Colors.blueGrey,
-                                                size: 40,
-                                              )),
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        const Text(
-                                          'Account Information',
-                                          style: TextStyle(
-                                              fontSize: 35,
-                                              color: Colors.blueGrey,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        const Text(
-                                          'if any details are incorrect please click and fill in the correct details and tap save button.',
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontStyle: FontStyle.italic),
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20.w, vertical: 10.h),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(context, '/home');
+                                      },
+                                      child: CircleAvatar(
+                                          radius: 30.r,
+                                          backgroundColor: Colors.blueGrey[100],
+                                          child: Icon(
+                                            Icons.arrow_upward,
+                                            color: Colors.blueGrey,
+                                            size: 40.r,
+                                          )),
+                                    ),
+                                    Form(
+                                      key: _formKey,
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            const accInfoText(
-                                              text: 'First Name',
+                                            SizedBox(
+                                              height: 30.h,
+                                            ),
+                                            Text(
+                                              'Account Information',
+                                              style: TextStyle(
+                                                  fontSize: 35.sp,
+                                                  color: Colors.blueGrey,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              'if any details are incorrect please click and fill in the correct details and tap save button.',
+                                              style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                  color: Colors.red,
+                                                  fontStyle: FontStyle.italic),
+                                            ),
+                                            SizedBox(
+                                              height: 20.h,
+                                            ),
+                                            Text(
+                                              'First Name',
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
                                             ),
                                             accInfoWidget(
                                                 childd: TextFormField(
@@ -123,10 +127,10 @@ class _AccountState extends State<Account> {
                                                   acccInfo.textfieldValidator,
                                               controller:
                                                   accinfo.fnamecontroller,
-                                              cursorColor: Colors.white,
-                                              style: const TextStyle(
+                                              cursorColor: Colors.blueGrey,
+                                              style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20,
+                                                  fontSize: 22.sp,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -136,18 +140,18 @@ class _AccountState extends State<Account> {
                                                 disabledBorder:
                                                     InputBorder.none,
                                               ),
-                                            ))
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const accInfoText(
-                                              text: 'Last Name',
+                                            )),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Text(
+                                              'Last Name',
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
                                             ),
                                             accInfoWidget(
                                                 childd: TextFormField(
@@ -155,10 +159,10 @@ class _AccountState extends State<Account> {
                                                   acccInfo.textfieldValidator,
                                               controller:
                                                   accinfo.lnamecontroller,
-                                              cursorColor: Colors.white,
-                                              style: const TextStyle(
+                                              cursorColor: Colors.blueGrey,
+                                              style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20,
+                                                  fontSize: 22.sp,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -168,28 +172,28 @@ class _AccountState extends State<Account> {
                                                 disabledBorder:
                                                     InputBorder.none,
                                               ),
-                                            ))
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const accInfoText(
-                                              text: 'Country',
+                                            )),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Text(
+                                              'Country',
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
                                             ),
                                             accInfoWidget(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.countryValue,
-                                              cursorColor: Colors.white,
-                                              style: const TextStyle(
+                                              cursorColor: Colors.blueGrey,
+                                              style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20,
+                                                  fontSize: 22.sp,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -199,28 +203,28 @@ class _AccountState extends State<Account> {
                                                 disabledBorder:
                                                     InputBorder.none,
                                               ),
-                                            ))
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const accInfoText(
-                                              text: 'State',
+                                            )),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Text(
+                                              'State',
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
                                             ),
                                             accInfoWidget(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.stateValue,
-                                              cursorColor: Colors.white,
-                                              style: const TextStyle(
+                                              cursorColor: Colors.blueGrey,
+                                              style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20,
+                                                  fontSize: 22.sp,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -230,28 +234,28 @@ class _AccountState extends State<Account> {
                                                 disabledBorder:
                                                     InputBorder.none,
                                               ),
-                                            ))
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const accInfoText(
-                                              text: 'City',
+                                            )),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            Text(
+                                              'City',
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
                                             ),
                                             accInfoWidget(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.cityValue,
-                                              cursorColor: Colors.white,
-                                              style: const TextStyle(
+                                              cursorColor: Colors.blueGrey,
+                                              style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20,
+                                                  fontSize: 22.sp,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -261,119 +265,46 @@ class _AccountState extends State<Account> {
                                                 disabledBorder:
                                                     InputBorder.none,
                                               ),
-                                            ))
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 30,
-                                        ),
-                                        // Row(
-                                        //   mainAxisAlignment:
-                                        //       MainAxisAlignment.spaceBetween,
-                                        //   children: [
-                                        //     const accInfoText(
-                                        //       text: 'Date of birth',
-                                        //     ),
+                                            )),
+                                            SizedBox(
+                                              height: 20.h,
+                                            ),
+                                            signInlogInwidget(
+                                                todoText: 'SAVE',
+                                                todo: () async {
+                                                  if (_formKey.currentState!
+                                                      .validate()) {
+                                                    try {
+                                                      await acccInfo
+                                                          .updateUserCred(
+                                                        accinfo.fnamecontroller
+                                                            .text,
+                                                        accinfo.lnamecontroller
+                                                            .text,
+                                                        accinfo
+                                                            .countryValue.text,
+                                                        accinfo.stateValue.text,
+                                                        accinfo.cityValue.text,
+                                                      );
+                                                      await Navigator.pushNamed(
+                                                          context, '/home');
+                                                    } on FirebaseException catch (e) {
+                                                      debugPrint('$e');
+                                                    }
+                                                  }
+                                                })
+                                          ]),
+                                    ),
+                                  ],
+                                ))),
+                      )
 
-                                        //     ElevatedButton(
-                                        //       autofocus: true,
-                                        //       style: ElevatedButton.styleFrom(
-                                        //         minimumSize:
-                                        //             const Size(250, 50),
-                                        //         primary: Colors.blueGrey,
-                                        //         elevation: 0,
-                                        //         shape: RoundedRectangleBorder(
-                                        //           borderRadius:
-                                        //               BorderRadius.circular(15),
-                                        //           side: const BorderSide(
-                                        //               color: Colors.transparent,
-                                        //               width: 2),
-                                        //         ),
-                                        //       ),
-                                        //       child: Container(
-                                        //         child: Row(children: [
-                                        //           Text(
-                                        //             acccInfo.isDateSelected
-                                        //                 ? '${data['dob']}'
-                                        //                 : DateFormat
-                                        //                         .yMMMMEEEEd()
-                                        //                     .format(acccInfo
-                                        //                         .selectedDate)
-                                        //                     .toString(),
-                                        //             style: const TextStyle(
-                                        //                 color: Colors.white,
-                                        //                 fontSize: 20,
-                                        //                 fontWeight:
-                                        //                     FontWeight.bold),
-                                        //           )
-                                        //         ]),
-                                        //       ),
-                                        //       onPressed: () {
-                                        //         showDatePicker(acccInfo);
-                                        //         print(acccInfo.selectedDate);
-                                        //       },
-                                        //     ),
-                                        //   ],
-                                        // ),
-                                        // const SizedBox(
-                                        //   height: 30,
-                                        // ),
-                                        signInlogInwidget(
-                                            todoText: 'SAVE',
-                                            todo: () async {
-                                              if (_formKey.currentState!
-                                                  .validate()) {
-                                                try {
-                                                  await acccInfo.updateUserCred(
-                                                    accinfo
-                                                        .fnamecontroller.text,
-                                                    accinfo
-                                                        .lnamecontroller.text,
-                                                    accinfo.countryValue.text,
-                                                    accinfo.stateValue.text,
-                                                    accinfo.cityValue.text,
-                                                  );
-                                                  await Navigator.pushNamed(
-                                                      context, '/home');
-                                                } on FirebaseException catch (e) {
-                                                  debugPrint('$e');
-                                                }
-                                              }
-                                            })
-                                      ]),
-                                )),
-                          ),
-                        ),
-                      );
+                          // ),
+                          );
                     } else {
                       return const Center(child: CircularProgressIndicator());
                     }
                   }));
         }));
-  }
-
-  void showDatePicker(AccountViewModel accinfo) {
-    showCupertinoModalPopup(
-        context: context,
-        builder: (BuildContext builder) {
-          return Container(
-            height: MediaQuery.of(context).copyWith().size.height * 0.25,
-            color: Colors.white,
-            child: CupertinoDatePicker(
-              mode: CupertinoDatePickerMode.date,
-              onDateTimeChanged: (value) {
-                if (value != accinfo.selectedDate) {
-                  setState(() {
-                    accinfo.isDateSelected = false;
-                    accinfo.selectedDate = value;
-                  });
-                }
-              },
-              initialDateTime: DateTime.now(),
-              minimumYear: 1800,
-              maximumYear: 2090,
-            ),
-          );
-        });
   }
 }

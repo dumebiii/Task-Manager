@@ -1,7 +1,9 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'package:wow/buisness_logic/view_model/notesoperation.dart';
@@ -10,6 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:wow/widget/reuse_widget.dart';
 
 import '../buisness_logic/view_model/addViewModel.dart';
+import '../service/service_locator.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -20,6 +23,13 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   final _formKey = GlobalKey<FormState>();
+  final NotesOpertaion notesOpertaion = locator<NotesOpertaion>();
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    notesOpertaion.loadDataFromLocalStorage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +37,7 @@ class _AddScreenState extends State<AddScreen> {
         create: (context) => AddViewModel(),
         child: Consumer<AddViewModel>(builder: (context, adv, child) {
           return Scaffold(
+              backgroundColor: Colors.white,
               body: SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
                   child: Center(
@@ -34,16 +45,15 @@ class _AddScreenState extends State<AddScreen> {
                           key: _formKey,
                           child: Column(
                             children: [
-                              const Text(
+                              Text(
                                 'Add task',
                                 style: TextStyle(
                                     color: Colors.blueGrey,
-                                    fontSize: 30,
+                                    fontSize: 30.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
                                 child: Column(children: [
                                   straightField(
                                     textfieldValidator: adv.textValidator,
@@ -53,8 +63,8 @@ class _AddScreenState extends State<AddScreen> {
                                       adv.titleText = value;
                                     },
                                   ),
-                                  const SizedBox(
-                                    height: 5,
+                                  SizedBox(
+                                    height: 5.h,
                                   ),
                                   straightField(
                                       textfieldValidator: adv.textValidator,
@@ -64,114 +74,117 @@ class _AddScreenState extends State<AddScreen> {
                                       onCHange: (value) {
                                         adv.descriptionText = value;
                                       }),
-                                  Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30, vertical: 10),
-                                      child: Column(children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            const DueText(
-                                              text: 'Category',
-                                            ),
-                                            DropdownButton(
-                                              dropdownColor: Colors.blueGrey,
-                                              // Initial Value
-                                              value: adv.dropdownvalue,
-
-                                              // Down Arrow Icon
-                                              icon: const Icon(
-                                                  Icons.keyboard_arrow_down),
-
-                                              // Array list of items
-                                              items:
-                                                  adv.items.map((String items) {
-                                                return DropdownMenuItem(
-                                                  value: items,
-                                                  child: Text(items),
-                                                );
-                                              }).toList(),
-                                              // After selecting the desired option,it will
-                                              // change button value to selected value
-                                              onChanged: (newValue) {
-                                                setState(() {
-                                                  adv.dropdownvalue =
-                                                      newValue as String;
-                                                });
-                                              },
-                                            ),
-                                          ],
+                                  Column(children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const DueText(
+                                          text: 'Category',
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            const DueText(
-                                              text: "Due date",
-                                            ),
-                                            Duegesture(
-                                              onTap: () {
-                                                showDatePicker(adv);
-                                              },
-                                              child: adv.selectedDate == null
-                                                  ? Text(
-                                                      DateFormat.MMMMEEEEd()
+                                        DropdownButton(
+                                          dropdownColor: Colors.blueGrey,
+                                          // Initial Value
+                                          value: adv.dropdownvalue,
 
-                                                          // displaying formatted date
-                                                          .format(
-                                                              DateTime.now()),
-                                                    )
-                                                  : Text(
-                                                      DateFormat.MMMMEEEEd()
+                                          // Down Arrow Icon
+                                          icon: const Icon(
+                                              Icons.keyboard_arrow_down),
 
-                                                          // displaying formatted date
-                                                          .format(
-                                                              adv.selectedDate)
-                                                          .toString(),
-                                                      style: const TextStyle(
-                                                          fontSize: 17),
-                                                    ),
-                                            ),
-                                          ],
+                                          // Array list of items
+                                          items: adv.items.map((String items) {
+                                            return DropdownMenuItem(
+                                              value: items,
+                                              child: Text(items),
+                                            );
+                                          }).toList(),
+                                          // After selecting the desired option,it will
+                                          // change button value to selected value
+                                          onChanged: (newValue) {
+                                            setState(() {
+                                              adv.dropdownvalue =
+                                                  newValue as String;
+                                            });
+                                          },
                                         ),
-                                        const SizedBox(
-                                          height: 10,
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const DueText(
+                                          text: "Due date",
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            const DueText(
-                                              text: 'Due time',
-                                            ),
-                                            Duegesture(
-                                              child:
-                                                  // ? Text(
-                                                  //     DateFormat.MMMMEEEEd()
+                                        SizedBox(width: 10.w),
+                                        Duegesture(
+                                          onTap: () {
+                                            showDatePicker(adv);
+                                          },
+                                          child: adv.selectedDate == null
+                                              ? AutoSizeText(
+                                                  DateFormat.yMMMd()
 
-                                                  //         // displaying formatted date
-                                                  //         .format(DateTime
-                                                  //             .now()),
-                                                  Text(
-                                                adv.dateTimee(),
-                                                style: const TextStyle(
-                                                    fontSize: 17),
-                                              ),
-                                              onTap: () {
-                                                adv.selectTime(context);
-                                              },
-                                            )
-                                          ],
+                                                      // displaying formatted date
+                                                      .format(DateTime.now()),
+                                                  minFontSize: 15,
+                                                  textScaleFactor: 1.0,
+                                                  style: TextStyle(
+                                                      fontSize: 19.sp),
+                                                )
+                                              : AutoSizeText(
+                                                  DateFormat.yMMMd()
+
+                                                      // displaying formatted date
+                                                      .format(adv.selectedDate)
+                                                      .toString(),
+                                                  minFontSize: 15,
+                                                  textScaleFactor: 1.0,
+                                                  style: TextStyle(
+                                                      fontSize: 19.sp),
+                                                ),
                                         ),
-                                      ]))
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10.h,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const DueText(
+                                          text: 'Due time',
+                                        ),
+                                        SizedBox(width: 10.w),
+                                        Duegesture(
+                                          child:
+                                              // ? Text(
+                                              //     DateFormat.MMMMEEEEd()
+
+                                              //         // displaying formatted date
+                                              //         .format(DateTime
+                                              //             .now()),
+                                              AutoSizeText(
+                                            adv.dateTimee(),
+                                            textScaleFactor: 1.0,
+                                            minFontSize: 15,
+                                            style: TextStyle(fontSize: 19.sp),
+                                          ),
+                                          onTap: () {
+                                            adv.selectTime(context);
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ])
                                 ]),
                               ),
                               Consumer<NotesOpertaion>(
                                   builder: (context, nott, child) {
                                 return Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 16.0.w),
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           elevation: 2,
@@ -195,10 +208,10 @@ class _AddScreenState extends State<AddScreen> {
                                         }
                                         ;
                                       },
-                                      child: const Center(
+                                      child: Center(
                                         child: Text(
                                           'add',
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(fontSize: 20.sp),
                                         ),
                                       )),
                                 );
@@ -213,7 +226,7 @@ class _AddScreenState extends State<AddScreen> {
         context: context,
         builder: (BuildContext builder) {
           return Container(
-            height: 150,
+            height: 220.h,
             color: Colors.white,
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
@@ -226,7 +239,7 @@ class _AddScreenState extends State<AddScreen> {
               },
               initialDateTime: adv.selectedDate,
               minimumYear: DateTime.now().year,
-              maximumYear: 2090,
+              maximumYear: 4050,
             ),
           );
         });

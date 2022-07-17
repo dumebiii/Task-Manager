@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wow/screen/home_screen.dart';
 
 import '../service/firebase_services.dart';
@@ -45,7 +47,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
         body: SafeArea(
       child: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 30),
+          padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 30.h),
           child: Column(
             children: [
               GestureDetector(
@@ -53,20 +55,21 @@ class _VerifyEmailState extends State<VerifyEmail> {
                   Navigator.pushNamed(context, '/signup');
                 },
                 child: CircleAvatar(
-                    radius: 30,
+                    radius: 30.r,
                     backgroundColor: Colors.blueGrey[100],
-                    child: const Icon(
+                    child: Icon(
                       Icons.arrow_upward,
                       color: Colors.blueGrey,
-                      size: 40,
+                      size: 40.r,
                     )),
               ),
               SizedBox(
-                height: 100,
+                height: 100.h,
               ),
-              Text(
-                'An verification mail 📩 has been sent to {user!.email} please verify.',
-                style: TextStyle(color: Colors.blueGrey, fontSize: 25),
+              AutoSizeText(
+                'An verification mail 📩 has been sent to ${user!.email} please verify.',
+                minFontSize: 20,
+                style: TextStyle(color: Colors.blueGrey, fontSize: 25.sp),
               ),
             ],
           ),

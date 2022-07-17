@@ -21,8 +21,8 @@ import 'package:wow/screen/verifyEmail.dart';
 import 'package:wow/service/checkConnect.dart';
 import 'package:wow/service/internetCheck.dart';
 import 'package:wow/service/service_locator.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:wow/service/connection.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'screen/passwordReset.dart';
 import 'service/firebase_services.dart';
@@ -51,27 +51,32 @@ class MyApp extends StatelessWidget {
             create: (context) => AuthProvider(),
           )
         ],
-        child: MaterialApp(
-          theme: ThemeData(
-            primaryColor: Colors
-                .white, //here it goes try changing this to your preferred colour
+        child: ScreenUtilInit(
+          splitScreenMode: false,
+          minTextAdapt: true,
+          designSize: const Size(375, 812),
+          builder: (BuildContext context, child) => MaterialApp(
+            theme: ThemeData(
+              primaryColor: Colors
+                  .white, //here it goes try changing this to your preferred colour
+            ),
+            debugShowCheckedModeBanner: false,
+            initialRoute: '/main',
+            routes: {
+              'intro': (context) => const LoadScreen(),
+              '/login': (context) => const SignIn(),
+              '/signup': (context) => const SignUp(),
+              '/home': (context) => const MyHomePage(),
+              '/user': (context) => const Userdd(),
+              '/menu': (context) => const Menu(),
+              '/personal': (context) => const Personal(),
+              '/business': (context) => const Buisness(),
+              '/main': (context) => const MainPage(),
+              '/account': (context) => const Account(),
+              '/verify': (context) => const VerifyEmail(),
+              '/reset': (context) => const PasswordReset(),
+            },
           ),
-          debugShowCheckedModeBanner: false,
-          initialRoute: '/main',
-          routes: {
-            'intro': (context) => const LoadScreen(),
-            '/login': (context) => const SignIn(),
-            '/signup': (context) => const SignUp(),
-            '/home': (context) => const MyHomePage(),
-            '/user': (context) => const Userdd(),
-            '/menu': (context) => const Menu(),
-            '/personal': (context) => const Personal(),
-            '/business': (context) => const Buisness(),
-            '/main': (context) => const MainPage(),
-            '/account': (context) => const Account(),
-            '/verify': (context) => const VerifyEmail(),
-            '/reset': (context) => const PasswordReset()
-          },
         ));
   }
 }

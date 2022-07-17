@@ -38,7 +38,7 @@ class AddViewModel extends ChangeNotifier {
   }
 
   String datE() {
-    final datee = DateFormat.MMMMEEEEd()
+    final datee = DateFormat.yMMMd()
 
         // displaying formatted date
         .format(selectedDate);

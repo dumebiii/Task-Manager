@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:wow/screen/home_screen.dart';
 import 'package:wow/utils/error_codes.dart';
 
 import '../buisness_logic/view_model/loginViewmodel.dart';
@@ -37,9 +39,9 @@ class _SignInState extends State<SignIn> {
           body: SingleChildScrollView(
             child: SafeArea(
                 child: Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: EdgeInsets.only(top: 30.h),
               child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
+                margin: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -48,24 +50,24 @@ class _SignInState extends State<SignIn> {
                         Navigator.pushNamed(context, 'intro');
                       },
                       child: CircleAvatar(
-                          radius: 30,
+                          radius: 30.r,
                           backgroundColor: Colors.blueGrey[100],
-                          child: const Icon(
+                          child: Icon(
                             Icons.arrow_back,
                             color: Colors.blueGrey,
-                            size: 40,
+                            size: 40.r,
                           )),
                     ),
-                    const SizedBox(
-                      height: 40,
+                    SizedBox(
+                      height: 40.h,
                     ),
-                    const Text(
+                    Text(
                       'Log - in',
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 40.sp, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(
-                      height: 30,
+                    SizedBox(
+                      height: 30.h,
                     ),
                     Form(
                         key: _formKey,
@@ -73,27 +75,29 @@ class _SignInState extends State<SignIn> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 'Your Email',
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: 10.sp,
                               ),
                               emailtextfield_widg(
                                   emailcontroller: logi.emailController,
                                   validator: logi.emailValidator),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: 10.h,
                               ),
-                              const Text(
+                              Text(
                                 'Password',
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: 10.sp,
                               ),
                               passtextfieldWidget(
                                   sufixIcon: GestureDetector(
@@ -112,8 +116,8 @@ class _SignInState extends State<SignIn> {
                                   passwordvalidator: logi.passwordValidator,
                                   passwordVisible: logi.passwordVisible,
                                   passwordcontroller: logi.passwordController),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: 10.h,
                               ),
                             ])),
                     Consumer<LoginViewModel>(builder: (context, logi, child) {
@@ -131,7 +135,11 @@ class _SignInState extends State<SignIn> {
                                 try {
                                   // ignore: unrelated_type_equality_checks
                                   await logi.login();
-                                  Navigator.pushNamed(context, '/home');
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              const MyHomePage()));
                                 } on FirebaseAuthException catch (e) {
                                   Navigator.pop(context);
                                   var message = e.message;
@@ -153,7 +161,11 @@ class _SignInState extends State<SignIn> {
                               if (_user == null) {
                                 Navigator.pushNamed(context, '/user');
                               } else {
-                                Navigator.pushNamed(context, '/home');
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            const MyHomePage()));
                               }
                             } on FirebaseAuthException catch (e) {
                               Navigator.pop(context);
@@ -164,31 +176,32 @@ class _SignInState extends State<SignIn> {
                         ],
                       );
                     }),
-                    const SizedBox(
-                      height: 5,
+                    SizedBox(
+                      height: 5.h,
                     ),
                     Center(
                         child: GestureDetector(
                       onTap: () => Navigator.pushNamed(context, '/reset'),
-                      child: const Text(
+                      child: Text(
                         ' Reset Password?',
-                        style: TextStyle(color: Colors.blueGrey, fontSize: 18),
+                        style:
+                            TextStyle(color: Colors.blueGrey, fontSize: 19.sp),
                       ),
                     )),
-                    const SizedBox(
-                      height: 5,
+                    SizedBox(
+                      height: 5.h,
                     ),
                     Center(
                       child: RichText(
                         text: TextSpan(
                             text: 'Dont have an account?',
-                            style: const TextStyle(
-                                color: Colors.black, fontSize: 18),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 19.sp),
                             children: <TextSpan>[
                               TextSpan(
                                   text: ' Sign Up',
-                                  style: const TextStyle(
-                                      color: Colors.blueGrey, fontSize: 18),
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 19.sp),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       Navigator.pushNamed(context, '/signup');
@@ -213,12 +226,12 @@ class _SignInState extends State<SignIn> {
       buttons: [
         DialogButton(
           color: Colors.blueGrey,
-          child: const Text(
+          child: Text(
             "OK",
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize: 20.sp),
           ),
           onPressed: () => Navigator.pop(context),
-          width: 120,
+          width: 120.w,
         )
       ],
     ).show();

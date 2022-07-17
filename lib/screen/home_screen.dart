@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'package:wow/buisness_logic/model/note.dart';
@@ -8,6 +9,7 @@ import 'package:wow/buisness_logic/view_model/notesoperation.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../buisness_logic/view_model/Homeviewmodel.dart';
+import '../service/service_locator.dart';
 import '../widget/reuse_widget.dart';
 import 'add_screen.dart';
 import 'menuPage.dart';
@@ -21,6 +23,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _advancedDrawerController = AdvancedDrawerController();
+  final NotesOpertaion notesOpertaion = locator<NotesOpertaion>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    notesOpertaion.loadDataFromLocalStorage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeViewModel>(
@@ -37,30 +47,31 @@ class _MyHomePageState extends State<MyHomePage> {
             rtlOpening: false,
             // openScale: 1.0,
             disabledGestures: false,
-            childDecoration: const BoxDecoration(
+            childDecoration: BoxDecoration(
               // NOTICE: Uncomment if you want to add shadow behind the page.
               // Keep in mind that it may cause animation jerks.
               boxShadow: <BoxShadow>[
                 BoxShadow(
                   color: Colors.black,
-                  blurRadius: 0,
+                  blurRadius: 0.r,
                 ),
               ],
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+              borderRadius: BorderRadius.all(Radius.circular(16.r)),
             ),
             child: Scaffold(
                 backgroundColor: Colors.white,
                 floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     showModalBottomSheet(
+                        backgroundColor: Colors.white,
                         context: context,
                         builder: (context) {
                           return const AddScreen();
                         });
                   },
-                  child: const Icon(
+                  child: Icon(
                     Icons.add,
-                    size: 45,
+                    size: 45.r,
                     color: Colors.white,
                   ),
                   backgroundColor: Colors.blueGrey,
@@ -74,11 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                       if (snapshot.hasData) {
                         dynamic dataa = snapshot.data;
-                        print(homeInfo.notesOpertaion);
                         return SafeArea(
                             child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 50, left: 20, right: 20, bottom: 0),
+                          padding: EdgeInsets.only(
+                              top: 50.h, left: 20.w, right: 20.w, bottom: 0.h),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -93,20 +103,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                             duration: const Duration(
                                                 milliseconds: 250),
                                             child: value.visible
-                                                ? const Icon(
+                                                ? Icon(
                                                     Icons.clear,
-                                                    size: 50,
+                                                    size: 50.r,
                                                     color: Colors.blueGrey,
                                                   )
-                                                : const Icon(
+                                                : Icon(
                                                     Icons.dashboard_outlined,
-                                                    size: 50,
+                                                    size: 50.r,
                                                     color: Colors.blueGrey,
                                                   ),
                                           );
                                         })),
-                                const SizedBox(
-                                  height: 30,
+                                SizedBox(
+                                  height: 30.h,
                                 ),
                                 AutoSizeText(
                                   "What's up, ${dataa['lname']}",
@@ -118,18 +128,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                       color: Colors.blueGrey,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                const SizedBox(
-                                  height: 30,
+                                SizedBox(
+                                  height: 30.h,
                                 ),
-                                const Text(
+                                Text(
                                   'CATEGORIES',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 20.sp,
                                       color: Colors.blueGrey,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                const SizedBox(
-                                  height: 20,
+                                SizedBox(
+                                  height: 20.h,
                                 ),
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
@@ -146,8 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 context, '/personal');
                                           },
                                         ),
-                                        const SizedBox(
-                                          width: 15,
+                                        SizedBox(
+                                          width: 15.w,
                                         ),
                                         homeCatWidg(
                                           catText: 'Business',
@@ -162,28 +172,32 @@ class _MyHomePageState extends State<MyHomePage> {
                                     );
                                   }),
                                 ),
-                                const SizedBox(
-                                  height: 40,
+                                SizedBox(
+                                  height: 40.h,
                                 ),
-                                const Text(
+                                Text(
                                   'My Tasks',
                                   style: TextStyle(
-                                      fontSize: 35,
+                                      fontSize: 25.sp,
                                       color: Colors.blueGrey,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                const SizedBox(
-                                  height: 5,
+                                SizedBox(
+                                  height: 5.h,
                                 ),
                                 Consumer<NotesOpertaion>(
                                     builder: (context, notee, child) {
-                                  return ListView.builder(
-                                    shrinkWrap: true,
-                                    itemBuilder: ((context, index) {
-                                      return NotesCard(
-                                          notes: notee.getNotes[index]);
-                                    }),
-                                    itemCount: notee.getNotes.length,
+                                  return Expanded(
+                                    child: ListView.builder(
+                                      // physics: AlwaysScrollableScrollPhysics(),
+
+                                      shrinkWrap: true,
+                                      itemBuilder: ((context, index) {
+                                        return NotesCard(
+                                            notes: notee.notes[index]);
+                                      }),
+                                      itemCount: notee.getNotes.length,
+                                    ),
                                   );
                                 }),
                               ]),
@@ -236,25 +250,26 @@ class NotesCard extends StatelessWidget {
             desc: notes.description,
             buttons: [
               DialogButton(
-                child: const Text(
+                child: Text(
                   "S E E N",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
                 ),
                 onPressed: () => Navigator.pop(context),
-                width: 120,
+                width: 120.w,
               )
             ],
           ).show();
         }),
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          height: 100,
+          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+          height: 120.h,
           decoration: BoxDecoration(
             color: Colors.blueGrey,
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
                 trailing: IconButton(
@@ -269,19 +284,20 @@ class NotesCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
 
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.bold),
                   // style: TextStyle(decoration: TextDecoration.lineThrough),
                 ),
-                subtitle: AutoSizeText(
+                subtitle: Text(
                   notes.description,
                   style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 15.sp,
                       fontWeight: FontWeight.w400,
                       color: Colors.white),
-                  minFontSize: 15,
+                  // minFontSize: 15,
+                  textScaleFactor: 1.3,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
@@ -291,9 +307,12 @@ class NotesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(notes.choice,
-                      style: const TextStyle(
+                      // maxFontSize: 15,
+                      // minFontSize: 10,
+                      textScaleFactor: 1.0,
+                      style: TextStyle(
                           color: Colors.white,
-                          fontSize: 17,
+                          fontSize: 17.sp,
                           fontWeight: FontWeight.bold)),
                   Row(
                     children: [
@@ -301,14 +320,17 @@ class NotesCard extends StatelessWidget {
                         Icons.calendar_month_rounded,
                         color: Colors.white,
                       ),
-                      const SizedBox(
-                        width: 5,
+                      SizedBox(
+                        width: 5.w,
                       ),
                       Text(notes.datee,
-                          style: const TextStyle(
+                          // maxFontSize: 15,
+                          // minFontSize: 10,
+                          textScaleFactor: 1.0,
+                          style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold)),
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w400)),
                     ],
                   ),
                   Row(
@@ -317,14 +339,17 @@ class NotesCard extends StatelessWidget {
                         Icons.access_time_outlined,
                         color: Colors.white,
                       ),
-                      const SizedBox(
-                        width: 5,
+                      SizedBox(
+                        width: 5.w,
                       ),
                       Text(notes.dateTime,
-                          style: const TextStyle(
+                          // maxFontSize: 15,
+                          // minFontSize: 10,
+                          textScaleFactor: 1.0,
+                          style: TextStyle(
                               color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold)),
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w400)),
                     ],
                   ),
                 ],
