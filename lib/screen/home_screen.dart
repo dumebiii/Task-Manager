@@ -58,167 +58,177 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
               borderRadius: BorderRadius.all(Radius.circular(16.r)),
             ),
-            child: Scaffold(
-                backgroundColor: Colors.white,
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                        backgroundColor: Colors.white,
-                        context: context,
-                        builder: (context) {
-                          return const AddScreen();
-                        });
-                  },
-                  child: Icon(
-                    Icons.add,
-                    size: 45.r,
-                    color: Colors.white,
+            child: WillPopScope(
+              onWillPop: _onWillPop,
+              child: Scaffold(
+                  backgroundColor: Colors.white,
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                          backgroundColor: Colors.white,
+                          context: context,
+                          builder: (context) {
+                            return const AddScreen();
+                          });
+                    },
+                    child: const Icon(
+                      Icons.add,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.blueGrey,
                   ),
-                  backgroundColor: Colors.blueGrey,
-                ),
-                body: FutureBuilder(
-                    future: homeInfo.fetchdetails(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState != ConnectionState.done) {
-                        return const Center(
-                            child: Text('Loading data ... please wait'));
-                      }
-                      if (snapshot.hasData) {
-                        dynamic dataa = snapshot.data;
-                        return SafeArea(
-                            child: Padding(
-                          padding: EdgeInsets.only(
-                              top: 50.h, left: 20.w, right: 20.w, bottom: 0.h),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                IconButton(
-                                    onPressed: _handleMenuButtonPressed,
-                                    icon: ValueListenableBuilder<
-                                            AdvancedDrawerValue>(
-                                        valueListenable:
-                                            _advancedDrawerController,
-                                        builder: (_, value, __) {
-                                          return AnimatedSwitcher(
-                                            duration: const Duration(
-                                                milliseconds: 250),
-                                            child: value.visible
-                                                ? Icon(
-                                                    Icons.clear,
-                                                    size: 50.r,
-                                                    color: Colors.blueGrey,
-                                                  )
-                                                : Icon(
-                                                    Icons.dashboard_outlined,
-                                                    size: 50.r,
-                                                    color: Colors.blueGrey,
-                                                  ),
-                                          );
-                                        })),
-                                SizedBox(
-                                  height: 30.h,
-                                ),
-                                AutoSizeText(
-                                  "What's up, ${dataa['lname']}",
-                                  minFontSize: 20,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.visible,
-                                  style: const TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 30.h,
-                                ),
-                                Text(
-                                  'CATEGORIES',
-                                  style: TextStyle(
-                                      fontSize: 20.sp,
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 20.h,
-                                ),
-                                SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Consumer<NotesOpertaion>(
+                  body: FutureBuilder(
+                      future: homeInfo.fetchdetails(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState != ConnectionState.done) {
+                          return const Center(
+                              child: Text('Loading data ... please wait'));
+                        }
+                        if (snapshot.hasData) {
+                          dynamic dataa = snapshot.data;
+                          return SafeArea(
+                              child: Padding(
+                            padding: EdgeInsets.only(
+                                top: 50.h,
+                                left: 20.w,
+                                right: 20.w,
+                                bottom: 0.h),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  IconButton(
+                                      onPressed: _handleMenuButtonPressed,
+                                      icon: ValueListenableBuilder<
+                                              AdvancedDrawerValue>(
+                                          valueListenable:
+                                              _advancedDrawerController,
+                                          builder: (_, value, __) {
+                                            return AnimatedSwitcher(
+                                              duration: const Duration(
+                                                  milliseconds: 250),
+                                              child: value.visible
+                                                  ? Icon(
+                                                      Icons.clear,
+                                                      size: 50.r,
+                                                      color: Colors.blueGrey,
+                                                    )
+                                                  : Icon(
+                                                      Icons.dashboard_outlined,
+                                                      size: 50.r,
+                                                      color: Colors.blueGrey,
+                                                    ),
+                                            );
+                                          })),
+                                  SizedBox(
+                                    height: 30.h,
+                                  ),
+                                  AutoSizeText(
+                                    "What's up, ${dataa['lname']}",
+                                    textScaleFactor: 1.0,
+                                    minFontSize: 25,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 30.sp,
+                                        color: Colors.blueGrey,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 30.h,
+                                  ),
+                                  Text(
+                                    'CATEGORIES',
+                                    textScaleFactor: 1.0,
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.blueGrey,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Consumer<NotesOpertaion>(
+                                        builder: (context, notee, child) {
+                                      return Row(
+                                        children: [
+                                          homeCatWidg(
+                                            catText: 'Personal',
+                                            text:
+                                                "${notee.getPersonal().length.toString()} tasks",
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context, '/personal');
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 15.w,
+                                          ),
+                                          homeCatWidg(
+                                            catText: 'Business',
+                                            text:
+                                                "${notee.getBuisness().length.toString()} tasks",
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context, '/business');
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    }),
+                                  ),
+                                  SizedBox(
+                                    height: 40.h,
+                                  ),
+                                  Text(
+                                    'My Tasks',
+                                    textScaleFactor: 1.0,
+                                    style: TextStyle(
+                                        fontSize: 25.sp,
+                                        color: Colors.blueGrey,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  Consumer<NotesOpertaion>(
                                       builder: (context, notee, child) {
-                                    return Row(
-                                      children: [
-                                        homeCatWidg(
-                                          catText: 'Personal',
-                                          text:
-                                              "${notee.getPersonal().length.toString()} tasks",
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, '/personal');
-                                          },
-                                        ),
-                                        SizedBox(
-                                          width: 15.w,
-                                        ),
-                                        homeCatWidg(
-                                          catText: 'Business',
-                                          text:
-                                              "${notee.getBuisness().length.toString()} tasks",
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, '/business');
-                                          },
-                                        ),
-                                      ],
+                                    return Expanded(
+                                      child: ListView.builder(
+                                        // physics: AlwaysScrollableScrollPhysics(),
+
+                                        shrinkWrap: true,
+                                        itemBuilder: ((context, index) {
+                                          return NotesCard(
+                                              notes: notee.notes[index]);
+                                        }),
+                                        itemCount: notee.notes.length,
+                                      ),
                                     );
                                   }),
-                                ),
-                                SizedBox(
-                                  height: 40.h,
-                                ),
-                                Text(
-                                  'My Tasks',
-                                  style: TextStyle(
-                                      fontSize: 25.sp,
-                                      color: Colors.blueGrey,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Consumer<NotesOpertaion>(
-                                    builder: (context, notee, child) {
-                                  return Expanded(
-                                    child: ListView.builder(
-                                      // physics: AlwaysScrollableScrollPhysics(),
-
-                                      shrinkWrap: true,
-                                      itemBuilder: ((context, index) {
-                                        return NotesCard(
-                                            notes: notee.notes[index]);
-                                      }),
-                                      itemCount: notee.getNotes.length,
-                                    ),
-                                  );
-                                }),
-                              ]),
-                        ));
-                      } else {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Center(child: CircularProgressIndicator()),
-                              signInlogInwidget(
-                                  todoText: 'Sign Out ',
-                                  todo: () async {
-                                    await homeInfo.firebaseservice.logOut();
-                                    Navigator.pushNamed(context, '/login');
-                                  }),
-                            ],
-                          ),
-                        );
-                      }
-                    })),
+                                ]),
+                          ));
+                        } else {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Center(
+                                    child: CircularProgressIndicator()),
+                                signInlogInwidget(
+                                    todoText: 'Sign Out ',
+                                    todo: () async {
+                                      await homeInfo.firebaseservice.logOut();
+                                      Navigator.pushNamed(context, '/login');
+                                    }),
+                              ],
+                            ),
+                          );
+                        }
+                      })),
+            ),
           );
           // });
         }));
@@ -229,6 +239,29 @@ class _MyHomePageState extends State<MyHomePage> {
     // _advancedDrawerController.value = AdvancedDrawerValue.visible();
 
     _advancedDrawerController.showDrawer();
+  }
+
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Are you sure?'),
+            content: const Text('Do you want to exit this App'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () =>
+                    Navigator.of(context).pop(false), //<-- SEE HERE
+                child: const DueText(text: 'No'),
+              ),
+              TextButton(
+                onPressed: () =>
+                    Navigator.of(context).pop(true), // <-- SEE HERE
+                child: const DueText(text: 'Yes'),
+              ),
+            ],
+          ),
+        )) ??
+        false;
   }
 }
 
@@ -250,8 +283,9 @@ class NotesCard extends StatelessWidget {
             desc: notes.description,
             buttons: [
               DialogButton(
+                color: Colors.blueGrey,
                 child: Text(
-                  "S E E N",
+                  "SEEN",
                   style: TextStyle(color: Colors.white, fontSize: 20.sp),
                 ),
                 onPressed: () => Navigator.pop(context),
@@ -262,25 +296,27 @@ class NotesCard extends StatelessWidget {
         }),
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          height: 120.h,
+          height: 100.h,
           decoration: BoxDecoration(
             color: Colors.blueGrey,
             borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
                 trailing: IconButton(
-                  onPressed: () {
-                    nott.delNewNote(notes);
+                  onPressed: () async {
+                    await nott.delNewNote(notes);
+                    print(notes);
                   },
                   icon: const Icon(Icons.delete),
                   color: Colors.red,
                 ),
                 title: Text(
                   notes.title, maxLines: 1,
+                  textScaleFactor: 1.0,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,
 
@@ -292,12 +328,13 @@ class NotesCard extends StatelessWidget {
                 ),
                 subtitle: Text(
                   notes.description,
+
                   style: TextStyle(
                       fontSize: 15.sp,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w300,
                       color: Colors.white),
                   // minFontSize: 15,
-                  textScaleFactor: 1.3,
+                  textScaleFactor: 1.0,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,

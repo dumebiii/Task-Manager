@@ -41,18 +41,21 @@ class _PersonalState extends State<Personal> {
               ),
               Text(
                 'Personal Tasks',
+                textScaleFactor: 1.0,
                 style: TextStyle(
-                    fontSize: 35.sp,
+                    fontSize: 28.sp,
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.bold),
               ),
               Consumer<NotesOpertaion>(builder: (context, data, child) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: ((context, index) {
-                    return NotessCard(notes: data.getPersonal()[index]);
-                  }),
-                  itemCount: data.getPersonal().length,
+                return Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: ((context, index) {
+                      return NotessCard(notes: data.getPersonal()[index]);
+                    }),
+                    itemCount: data.getPersonal().length,
+                  ),
                 );
               }),
             ],
@@ -72,7 +75,25 @@ class NotessCard extends StatelessWidget {
     bool isStrike = false;
 
     return Consumer<NotesOpertaion>(builder: (context, nott, child) {
-      return SingleChildScrollView(
+      return GestureDetector(
+        onTap: (() {
+          Alert(
+            context: context,
+            type: AlertType.success,
+            title: notes.title,
+            desc: notes.description,
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "S E E N",
+                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                ),
+                onPressed: () => Navigator.pop(context),
+                width: 120.w,
+              )
+            ],
+          ).show();
+        }),
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           height: 100.h,
@@ -81,7 +102,8 @@ class NotessCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
                 trailing: IconButton(
@@ -91,53 +113,35 @@ class NotessCard extends StatelessWidget {
                   icon: const Icon(Icons.delete),
                   color: Colors.red,
                 ),
-                title: GestureDetector(
-                  onTap: (() {
-                    Alert(
-                      context: context,
-                      type: AlertType.success,
-                      title: notes.title,
-                      desc: notes.description,
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "S E E N",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20.sp),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 120.w,
-                        )
-                      ],
-                    ).show();
-                  }),
-                  child: Text(
-                    notes.title, maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
+                title: Text(
+                  notes.title, maxLines: 1,
+                  textScaleFactor: 1.0,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
 
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold),
-                    // style: TextStyle(decoration: TextDecoration.lineThrough),
-                  ),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold),
+                  // style: TextStyle(decoration: TextDecoration.lineThrough),
                 ),
-                subtitle: Row(
-                  children: [
-                    Text(
-                      notes.description,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                    ),
-                  ],
+                subtitle: Text(
+                  notes.description,
+                  maxLines: 1,
+                  textScaleFactor: 1.0,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white),
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(notes.choice,
+                      textScaleFactor: 1.0,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 17.sp,
@@ -153,10 +157,11 @@ class NotessCard extends StatelessWidget {
                         width: 5.w,
                       ),
                       Text(notes.datee,
+                          textScaleFactor: 1.0,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.w400)),
                     ],
                   ),
                   Row(
@@ -170,10 +175,11 @@ class NotessCard extends StatelessWidget {
                         width: 5.w,
                       ),
                       Text(notes.dateTime,
+                          textScaleFactor: 1.0,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.w400)),
                     ],
                   ),
                 ],

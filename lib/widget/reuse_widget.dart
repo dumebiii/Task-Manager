@@ -39,8 +39,11 @@ class straightField extends StatelessWidget {
         cursorColor: Colors.blueGrey,
         cursorHeight: 30.h,
         textAlign: TextAlign.center,
+
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle: TextStyle(fontSize: 20.sp),
+
           // enabledBorder: UnderlineInputBorder(
           //   borderSide: BorderSide(color: Colors.blueGrey),
           // ),
@@ -236,6 +239,7 @@ class signInlogInwidget extends StatelessWidget {
           child: Center(
             child: Text(
               todoText,
+              textScaleFactor: 1.0,
               style: TextStyle(color: Colors.white, fontSize: 25.sp),
             ),
           ),
@@ -304,6 +308,7 @@ class DueText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textScaleFactor: 1.0,
       style: TextStyle(
           color: Colors.blueGrey, fontSize: 21.sp, fontWeight: FontWeight.bold),
     );
@@ -374,14 +379,16 @@ class homeCatWidg extends StatelessWidget {
             children: [
               Text(
                 text,
+                textScaleFactor: 1.0,
                 style: TextStyle(
                   color: Colors.blueGrey[100],
                 ),
               ),
               Text(
                 catText,
+                textScaleFactor: 1.0,
                 style: TextStyle(
-                    fontSize: 35.sp,
+                    fontSize: 28.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),

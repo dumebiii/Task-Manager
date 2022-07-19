@@ -46,8 +46,8 @@ class AddViewModel extends ChangeNotifier {
   }
 
   String dateTimee() {
-    final hour = TimeOfDay.now().hour.toString().padLeft(2, '0');
-    final min = TimeOfDay.now().minute.toString().padLeft(2, '0');
+    final hour = selectedTime.hour.toString().padLeft(2, '0');
+    final min = selectedTime.minute.toString().padLeft(2, '0');
     // ignore: non_constant_identifier_names
     final Datetimee = ('${hour}:${min}').toString();
 

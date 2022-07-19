@@ -48,30 +48,10 @@ class _VerifyEmailState extends State<VerifyEmail> {
       child: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 30.h),
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/signup');
-                },
-                child: CircleAvatar(
-                    radius: 30.r,
-                    backgroundColor: Colors.blueGrey[100],
-                    child: Icon(
-                      Icons.arrow_upward,
-                      color: Colors.blueGrey,
-                      size: 40.r,
-                    )),
-              ),
-              SizedBox(
-                height: 100.h,
-              ),
-              AutoSizeText(
-                'An verification mail 📩 has been sent to ${user!.email} please verify.',
-                minFontSize: 20,
-                style: TextStyle(color: Colors.blueGrey, fontSize: 25.sp),
-              ),
-            ],
+          child: AutoSizeText(
+            'An verification mail 📩 has been sent to ${user!.email} please verify.',
+            minFontSize: 20,
+            style: TextStyle(color: Colors.blueGrey, fontSize: 25.sp),
           ),
         ),
       ),
@@ -83,7 +63,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
     await user!.reload();
     if (user!.emailVerified) {
       timer!.cancel();
-      Navigator.pushNamed(context, '/user');
+      Navigator.pushReplacementNamed(context, '/user');
     }
   }
 

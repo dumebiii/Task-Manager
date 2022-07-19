@@ -47,6 +47,7 @@ class _AddScreenState extends State<AddScreen> {
                             children: [
                               Text(
                                 'Add task',
+                                textScaleFactor: 1.0,
                                 style: TextStyle(
                                     color: Colors.blueGrey,
                                     fontSize: 30.sp,
@@ -83,6 +84,9 @@ class _AddScreenState extends State<AddScreen> {
                                           text: 'Category',
                                         ),
                                         DropdownButton(
+                                          iconEnabledColor: Colors.blueGrey,
+                                          itemHeight: 50.0.h,
+
                                           dropdownColor: Colors.blueGrey,
                                           // Initial Value
                                           value: adv.dropdownvalue,
@@ -130,7 +134,7 @@ class _AddScreenState extends State<AddScreen> {
                                                   minFontSize: 15,
                                                   textScaleFactor: 1.0,
                                                   style: TextStyle(
-                                                      fontSize: 19.sp),
+                                                      fontSize: 15.sp),
                                                 )
                                               : AutoSizeText(
                                                   DateFormat.yMMMd()
@@ -141,7 +145,7 @@ class _AddScreenState extends State<AddScreen> {
                                                   minFontSize: 15,
                                                   textScaleFactor: 1.0,
                                                   style: TextStyle(
-                                                      fontSize: 19.sp),
+                                                      fontSize: 15.sp),
                                                 ),
                                         ),
                                       ],
@@ -165,11 +169,11 @@ class _AddScreenState extends State<AddScreen> {
                                               //         // displaying formatted date
                                               //         .format(DateTime
                                               //             .now()),
-                                              AutoSizeText(
+                                              Text(
                                             adv.dateTimee(),
                                             textScaleFactor: 1.0,
-                                            minFontSize: 15,
-                                            style: TextStyle(fontSize: 19.sp),
+                                            // minFontSize: 15,
+                                            style: TextStyle(fontSize: 15.sp),
                                           ),
                                           onTap: () {
                                             adv.selectTime(context);
@@ -179,6 +183,9 @@ class _AddScreenState extends State<AddScreen> {
                                     ),
                                   ])
                                 ]),
+                              ),
+                              SizedBox(
+                                height: 10.h,
                               ),
                               Consumer<NotesOpertaion>(
                                   builder: (context, nott, child) {

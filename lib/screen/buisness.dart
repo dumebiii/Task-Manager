@@ -41,8 +41,9 @@ class _BuisnessState extends State<Buisness> {
               ),
               Text(
                 'Business Tasks',
+                textScaleFactor: 1.0,
                 style: TextStyle(
-                    fontSize: 35.sp,
+                    fontSize: 28.sp,
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.bold),
               ),
@@ -72,116 +73,115 @@ class NotessCard extends StatelessWidget {
     bool isStrike = false;
 
     return Consumer<NotesOpertaion>(builder: (context, nott, child) {
-      return SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-          height: 100.h,
-          decoration: BoxDecoration(
-            color: Colors.blueGrey,
-            borderRadius: BorderRadius.circular(15.r),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                trailing: IconButton(
-                  onPressed: () {
-                    nott.delNewNote(notes);
-                  },
-                  icon: const Icon(Icons.delete),
-                  color: Colors.red,
-                ),
-                title: GestureDetector(
-                  onTap: (() {
-                    Alert(
-                      context: context,
-                      type: AlertType.success,
-                      title: notes.title,
-                      desc: notes.description,
-                      buttons: [
-                        DialogButton(
-                          child: Text(
-                            "S E E N",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20.sp),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          width: 120.w,
-                        )
-                      ],
-                    ).show();
-                  }),
+      return GestureDetector(
+          onTap: (() {
+            Alert(
+              context: context,
+              type: AlertType.success,
+              title: notes.title,
+              desc: notes.description,
+              buttons: [
+                DialogButton(
                   child: Text(
-                    notes.title, maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold),
-                    // style: TextStyle(decoration: TextDecoration.lineThrough),
+                    "S E E N",
+                    style: TextStyle(color: Colors.white, fontSize: 20.sp),
                   ),
-                ),
-                subtitle: Row(
-                  children: [
-                    Text(
-                      notes.description,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                    ),
-                  ],
-                ),
+                  onPressed: () => Navigator.pop(context),
+                  width: 120.w,
+                )
+              ],
+            ).show();
+          }),
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              height: 100.h,
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+                borderRadius: BorderRadius.circular(15.r),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(notes.choice,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.bold)),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_month_rounded,
-                        color: Colors.white,
-                        size: 20.r,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      trailing: IconButton(
+                        onPressed: () {
+                          nott.delNewNote(notes);
+                        },
+                        icon: const Icon(Icons.delete),
+                        color: Colors.red,
                       ),
-                      SizedBox(
-                        width: 5.w,
+                      title: Text(
+                        notes.title, maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                        textScaleFactor: 1.0,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold),
+                        // style: TextStyle(decoration: TextDecoration.lineThrough),
                       ),
-                      Text(notes.datee,
-                          style: TextStyle(
+                      subtitle: Text(
+                        notes.description,
+                        maxLines: 1,
+                        textScaleFactor: 1.0,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(notes.choice,
+                            textScaleFactor: 1.0,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17.sp,
+                                fontWeight: FontWeight.bold)),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.calendar_month_rounded,
                               color: Colors.white,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.access_time_outlined,
-                        color: Colors.white,
-                        size: 20.r,
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      Text(notes.dateTime,
-                          style: TextStyle(
+                              size: 20.r,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(notes.datee,
+                                textScaleFactor: 1.0,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w400)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time_outlined,
                               color: Colors.white,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      );
+                              size: 20.r,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(notes.dateTime,
+                                textScaleFactor: 1.0,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w400)),
+                          ],
+                        ),
+                      ],
+                    )
+                  ])));
     });
   }
 }

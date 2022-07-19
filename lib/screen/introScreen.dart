@@ -43,10 +43,11 @@ class _LoadScreenState extends State<LoadScreen> {
                           },
                           child: Text(
                             'Log In ',
+                            textScaleFactor: 1.0,
                             style: TextStyle(
                               fontSize: 25.sp,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xff607d8b),
+                              color: const Color(0xff607d8b),
                             ),
                           ),
                         ),
@@ -66,10 +67,11 @@ class _LoadScreenState extends State<LoadScreen> {
                           },
                           child: Text(
                             'Sign Up ',
+                            textScaleFactor: 1.0,
                             style: TextStyle(
                               fontSize: 25.sp,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xff607d8b),
+                              color: const Color(0xff607d8b),
                             ),
                           ),
                         ),

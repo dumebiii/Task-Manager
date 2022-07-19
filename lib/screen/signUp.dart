@@ -155,7 +155,7 @@ class _SignUpState extends State<SignUp> {
                                               // ignore: unrelated_type_equality_checks
                                               await regist.register();
 
-                                              Navigator.pushNamed(
+                                              Navigator.pushReplacementNamed(
                                                   context, '/verify');
                                             } on FirebaseAuthException catch (e) {
                                               Navigator.pop(context);
@@ -179,10 +179,10 @@ class _SignUpState extends State<SignUp> {
                                             final _user =
                                                 await logi.fetchdetails();
                                             if (_user == null) {
-                                              Navigator.pushNamed(
+                                              Navigator.pushReplacementNamed(
                                                   context, '/user');
                                             } else {
-                                              Navigator.pushNamed(
+                                              Navigator.pushReplacementNamed(
                                                   context, '/home');
                                             }
                                             // await Navigator.pushNamed(

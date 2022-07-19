@@ -18,11 +18,13 @@ import 'package:wow/screen/signIn.dart';
 import 'package:wow/screen/signUp.dart';
 import 'package:wow/screen/user_info.dart';
 import 'package:wow/screen/verifyEmail.dart';
-import 'package:wow/service/checkConnect.dart';
+// import 'package:wow/service/checkConnect.dart';
 import 'package:wow/service/internetCheck.dart';
 import 'package:wow/service/service_locator.dart';
-import 'package:wow/service/connection.dart';
+// import 'package:wow/service/connection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wow/utils/shared_prefence.dart';
+import 'package:wow/widget/reuse_widget.dart';
 
 import 'screen/passwordReset.dart';
 import 'service/firebase_services.dart';
@@ -32,6 +34,7 @@ Future<void> main() async {
 
   await Firebase.initializeApp();
   await setUpserviceLocator();
+  await SharedPreferencesHelper.init();
 
   runApp(const MyApp());
 }
@@ -159,17 +162,21 @@ class _MainPageState extends State<MainPage> {
                           const Text(
                             'No internet Connection',
                             style: TextStyle(
-                                fontSize: 35,
+                                fontSize: 30,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400),
                           ),
-                          ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  CheckUserConnection();
-                                });
-                              },
-                              child: Text('reload'))
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          signInlogInwidget(
+                            todoText: 'reload',
+                            todo: () {
+                              setState(() {
+                                CheckUserConnection();
+                              });
+                            },
+                          )
                         ],
                       ),
                     ),

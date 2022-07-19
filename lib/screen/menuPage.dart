@@ -35,14 +35,14 @@ class _MenuState extends State<Menu> {
                             Navigator.pushNamed(context, '/account')),
                         icon: Icon(
                           Icons.person_pin,
-                          size: 50.0.r,
+                          size: 40.0.r,
                           color: Colors.white,
                         ),
                         label: Text(
                           'Account',
                           textScaleFactor: 1.0,
                           style: TextStyle(
-                            fontSize: 35.r,
+                            fontSize: 32.r,
                             color: Colors.white,
                           ),
                         )),
@@ -53,14 +53,14 @@ class _MenuState extends State<Menu> {
                         onPressed: () {},
                         icon: Icon(
                           Icons.dashboard,
-                          size: 50.0.r,
+                          size: 40.0.r,
                           color: Colors.white,
                         ),
                         label: Text(
                           'Categories',
                           textScaleFactor: 1.0,
                           style: TextStyle(
-                            fontSize: 35.sp,
+                            fontSize: 32.sp,
                             color: Colors.white,
                           ),
                         )),
@@ -108,11 +108,9 @@ class _MenuState extends State<Menu> {
                         todoText: 'Sign Out ',
                         todo: () async {
                           await authh.logOut();
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const LoadScreen()));
+
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              'intro', (Route<dynamic> route) => false);
                         }),
                     SizedBox(
                       height: 50.h,

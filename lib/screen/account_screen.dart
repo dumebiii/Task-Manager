@@ -38,6 +38,7 @@ class _AccountState extends State<Account> {
 
   @override
   Widget build(BuildContext context) {
+    final double scaleFactor = MediaQuery.of(context).textScaleFactor;
     return ChangeNotifierProvider<AccountViewModel>(
         create: (context) => AccountViewModel(),
         child: Consumer<AccountViewModel>(builder: (context, acccInfo, child) {
@@ -51,8 +52,9 @@ class _AccountState extends State<Account> {
                       print(data);
 
                       // userInfo: data['fname'],
-                      accinfo.fnamecontroller =
-                          TextEditingController(text: data['fname']);
+                      accinfo.fnamecontroller = TextEditingController(
+                        text: data['fname'],
+                      );
                       accinfo.lnamecontroller =
                           TextEditingController(text: data['lname']);
                       // ignore: non_constant_identifier_names
@@ -97,6 +99,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'Account Information',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 35.sp,
                                                   color: Colors.blueGrey,
@@ -104,6 +107,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'if any details are incorrect please click and fill in the correct details and tap save button.',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 12.sp,
                                                   color: Colors.red,
@@ -114,6 +118,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'First Name',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 18.sp,
                                                   fontWeight: FontWeight.bold),
@@ -127,10 +132,10 @@ class _AccountState extends State<Account> {
                                                   acccInfo.textfieldValidator,
                                               controller:
                                                   accinfo.fnamecontroller,
-                                              cursorColor: Colors.blueGrey,
+                                              cursorColor: Colors.white,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 22.sp,
+                                                  fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -146,6 +151,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'Last Name',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 18.sp,
                                                   fontWeight: FontWeight.bold),
@@ -159,10 +165,10 @@ class _AccountState extends State<Account> {
                                                   acccInfo.textfieldValidator,
                                               controller:
                                                   accinfo.lnamecontroller,
-                                              cursorColor: Colors.blueGrey,
+                                              cursorColor: Colors.white,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 22.sp,
+                                                  fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -178,6 +184,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'Country',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 18.sp,
                                                   fontWeight: FontWeight.bold),
@@ -190,10 +197,10 @@ class _AccountState extends State<Account> {
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.countryValue,
-                                              cursorColor: Colors.blueGrey,
+                                              cursorColor: Colors.white,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 22.sp,
+                                                  fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -209,6 +216,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'State',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 18.sp,
                                                   fontWeight: FontWeight.bold),
@@ -221,10 +229,10 @@ class _AccountState extends State<Account> {
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.stateValue,
-                                              cursorColor: Colors.blueGrey,
+                                              cursorColor: Colors.white,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 22.sp,
+                                                  fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,
@@ -240,6 +248,7 @@ class _AccountState extends State<Account> {
                                             ),
                                             Text(
                                               'City',
+                                              textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 18.sp,
                                                   fontWeight: FontWeight.bold),
@@ -252,10 +261,10 @@ class _AccountState extends State<Account> {
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.cityValue,
-                                              cursorColor: Colors.blueGrey,
+                                              cursorColor: Colors.white,
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 22.sp,
+                                                  fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
                                                 border: InputBorder.none,

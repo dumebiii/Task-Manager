@@ -135,11 +135,22 @@ class _SignInState extends State<SignIn> {
                                 try {
                                   // ignore: unrelated_type_equality_checks
                                   await logi.login();
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const MyHomePage()));
+                                  // Navigator.pushReplacement(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (BuildContext context) =>
+                                  //             const MyHomePage()));
+                                  final _user = await logi.fetchdetails();
+                                  if (_user == null) {
+                                    Navigator.pushReplacementNamed(
+                                        context, '/user');
+                                  } else {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                const MyHomePage()));
+                                  }
                                 } on FirebaseAuthException catch (e) {
                                   Navigator.pop(context);
                                   var message = e.message;

@@ -274,8 +274,9 @@ class _UserddState extends State<Userdd> {
                                               if (_formKey.currentState!
                                                   .validate()) {
                                                 await userInfo.saveUserCred();
-                                                await Navigator.pushNamed(
-                                                    context, '/home');
+                                                await Navigator
+                                                    .pushReplacementNamed(
+                                                        context, '/home');
                                               }
                                             },
                                             style: ElevatedButton.styleFrom(
