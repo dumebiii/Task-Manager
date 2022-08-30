@@ -6,9 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wow/buisness_logic/view_model/loginViewmodel.dart';
 import 'package:wow/buisness_logic/view_model/registerViewModel.dart';
-import 'package:wow/widget/reuse_widget.dart';
+import 'package:wow/utils/ui_helpers.dart';
+import 'package:wow/widget/buttons/google_button.dart';
+import 'package:wow/widget/buttons/signlog_button.dart';
 
 import '../service/service_locator.dart';
+import '../widget/TextFormField/emailTextField.dart';
+import '../widget/TextFormField/passwordTextField.dart';
+// import '../widget/TextFormField/passtextfieldWidget.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -24,7 +29,6 @@ class _SignUpState extends State<SignUp> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     regist.emailController.dispose();
     regist.passwordController.dispose();
     super.dispose();
@@ -35,7 +39,7 @@ class _SignUpState extends State<SignUp> {
     return ChangeNotifierProvider(
         create: (context) => regist,
         child: Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: kWhite,
             body: SingleChildScrollView(
                 child: SafeArea(
                     child: Padding(
@@ -51,31 +55,25 @@ class _SignUpState extends State<SignUp> {
                                   },
                                   child: CircleAvatar(
                                       radius: 30.r,
-                                      backgroundColor: Colors.blueGrey[100],
+                                      backgroundColor: kLightBluegrey,
                                       child: Icon(
                                         Icons.arrow_back,
-                                        color: Colors.blueGrey,
+                                        color: kBluegrey,
                                         size: 40.r,
                                       )),
                                 ),
-                                SizedBox(
-                                  height: 10.h,
-                                ),
+                                verticalSpaceSmall,
                                 Text(
                                   'Create',
-                                  style: TextStyle(
-                                      fontSize: 40.sp,
-                                      fontWeight: FontWeight.bold),
+                                  style: kTitleTextStyle.copyWith(
+                                      fontSize: 37.sp, color: kBlack),
                                 ),
                                 Text(
                                   'Account',
-                                  style: TextStyle(
-                                      fontSize: 40.sp,
-                                      fontWeight: FontWeight.bold),
+                                  style: kTitleTextStyle.copyWith(
+                                      fontSize: 37.sp, color: kBlack),
                                 ),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
+                                verticalSpaceRegular,
                                 Form(
                                     key: _formKey,
                                     child: Column(
@@ -86,30 +84,22 @@ class _SignUpState extends State<SignUp> {
                                         children: [
                                           Text(
                                             'Your Email',
-                                            style: TextStyle(
-                                                fontSize: 18.sp,
-                                                fontWeight: FontWeight.bold),
+                                            style: kMediumTextStyle.copyWith(
+                                                fontSize: 18.sp, color: kBlack),
                                           ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
+                                          verticalSpaceSmall,
                                           emailtextfield_widg(
                                             validator: regist.emailValidator,
                                             emailcontroller:
                                                 regist.emailController,
                                           ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
+                                          verticalSpaceSmall,
                                           Text(
                                             'Password',
-                                            style: TextStyle(
-                                                fontSize: 18.sp,
-                                                fontWeight: FontWeight.bold),
+                                            style: kMediumTextStyle.copyWith(
+                                                fontSize: 18.sp, color: kBlack),
                                           ),
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
+                                          verticalSpaceSmall,
                                           passtextfieldWidget(
                                               sufixIcon: GestureDetector(
                                                 onTap: () {
@@ -139,7 +129,7 @@ class _SignUpState extends State<SignUp> {
                                     builder: (context, regist, child) {
                                   return Column(
                                     children: [
-                                      signInlogInwidget(
+                                      SignLog(
                                         todoText: 'Create account',
                                         todo: () async {
                                           if (_formKey.currentState!
@@ -165,7 +155,7 @@ class _SignUpState extends State<SignUp> {
                                           }
                                         },
                                       ),
-                                      googlesignWidget(
+                                      GoogleSign(
                                         // todo: (() => regist.gregister()),
                                         todo: () async {
                                           showDialog(
@@ -205,13 +195,12 @@ class _SignUpState extends State<SignUp> {
                                     text: TextSpan(
                                         text: 'Already have an account?',
                                         style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18.sp),
+                                            color: kBlack, fontSize: 18.sp),
                                         children: <TextSpan>[
                                           TextSpan(
                                               text: ' Log In',
                                               style: TextStyle(
-                                                  color: Colors.blueGrey,
+                                                  color: kBluegrey,
                                                   fontSize: 18.sp),
                                               recognizer: TapGestureRecognizer()
                                                 ..onTap = () {
@@ -233,10 +222,10 @@ class _SignUpState extends State<SignUp> {
       desc: errorMsg,
       buttons: [
         DialogButton(
-          color: Colors.blueGrey,
+          color: kBluegrey,
           child: Text(
             "OK",
-            style: TextStyle(color: Colors.white, fontSize: 20.sp),
+            style: TextStyle(color: kWhite, fontSize: 20.sp),
           ),
           onPressed: () => Navigator.pop(context),
           width: 120.w,

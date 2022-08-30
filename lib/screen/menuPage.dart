@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:provider/provider.dart';
-import 'package:wow/screen/introScreen.dart';
-import 'package:wow/service/firebase_services.dart';
 
-import '../widget/reuse_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:provider/provider.dart';
+import 'package:wow/service/firebase_services.dart';
+import 'package:wow/utils/ui_helpers.dart';
+import 'package:wow/widget/buttons/signlog_button.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Consumer<AuthProvider>(builder: (context, authh, child) {
       return Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: kBluegrey,
         body: SafeArea(
           child: Padding(
               padding: EdgeInsets.fromLTRB(20.w, 170.h, 20.w, 0.h),
@@ -36,14 +35,14 @@ class _MenuState extends State<Menu> {
                         icon: Icon(
                           Icons.person_pin,
                           size: 40.0.r,
-                          color: Colors.white,
+                          color: kWhite,
                         ),
                         label: Text(
                           'Account',
                           textScaleFactor: 1.0,
                           style: TextStyle(
                             fontSize: 32.r,
-                            color: Colors.white,
+                            color: kWhite,
                           ),
                         )),
                     SizedBox(
@@ -54,20 +53,20 @@ class _MenuState extends State<Menu> {
                         icon: Icon(
                           Icons.dashboard,
                           size: 40.0.r,
-                          color: Colors.white,
+                          color: kWhite,
                         ),
                         label: Text(
                           'Categories',
                           textScaleFactor: 1.0,
                           style: TextStyle(
                             fontSize: 32.sp,
-                            color: Colors.white,
+                            color: kWhite,
                           ),
                         )),
                     Center(
                         child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: kWhite,
                           borderRadius: BorderRadius.circular(20.r)),
                       child: TextButton(
                           onPressed: () =>
@@ -77,7 +76,7 @@ class _MenuState extends State<Menu> {
                             textScaleFactor: 1.0,
                             style: TextStyle(
                               fontSize: 25.sp,
-                              color: Colors.blueGrey,
+                              color: kBluegrey,
                             ),
                           )),
                     )),
@@ -87,7 +86,7 @@ class _MenuState extends State<Menu> {
                     Center(
                         child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: kWhite,
                           borderRadius: BorderRadius.circular(20.r)),
                       child: TextButton(
                           onPressed: () =>
@@ -97,14 +96,14 @@ class _MenuState extends State<Menu> {
                             textScaleFactor: 1.0,
                             style: TextStyle(
                               fontSize: 25.sp,
-                              color: Colors.blueGrey,
+                              color: kBluegrey,
                             ),
                           )),
                     )),
                     SizedBox(
                       height: 50.h,
                     ),
-                    signInlogInwidget(
+                    SignLog(
                         todoText: 'Sign Out ',
                         todo: () async {
                           await authh.logOut();

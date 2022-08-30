@@ -4,8 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../utils/error_codes.dart';
-
 // This class handles authentication with provider state management
 class AuthProvider extends ChangeNotifier {
   //initilializing firebase authentication

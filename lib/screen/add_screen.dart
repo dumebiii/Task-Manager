@@ -9,10 +9,13 @@ import 'package:provider/provider.dart';
 import 'package:wow/buisness_logic/view_model/notesoperation.dart';
 
 import 'package:intl/intl.dart';
-import 'package:wow/widget/reuse_widget.dart';
+import 'package:wow/utils/ui_helpers.dart';
 
 import '../buisness_logic/view_model/addViewModel.dart';
 import '../service/service_locator.dart';
+import '../widget/TextFormField/straightTextField.dart';
+import '../widget/gestures/due_gesture.dart';
+import '../widget/extras/TextWidgets/textWidget.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -25,8 +28,8 @@ class _AddScreenState extends State<AddScreen> {
   final _formKey = GlobalKey<FormState>();
   final NotesOpertaion notesOpertaion = locator<NotesOpertaion>();
 
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     notesOpertaion.loadDataFromLocalStorage();
   }
@@ -37,7 +40,7 @@ class _AddScreenState extends State<AddScreen> {
         create: (context) => AddViewModel(),
         child: Consumer<AddViewModel>(builder: (context, adv, child) {
           return Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: kWhite,
               body: SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
                   child: Center(
@@ -49,14 +52,14 @@ class _AddScreenState extends State<AddScreen> {
                                 'Add task',
                                 textScaleFactor: 1.0,
                                 style: TextStyle(
-                                    color: Colors.blueGrey,
+                                    color: kBluegrey,
                                     fontSize: 30.sp,
                                     fontWeight: FontWeight.bold),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                                 child: Column(children: [
-                                  straightField(
+                                  StraightField(
                                     textfieldValidator: adv.textValidator,
                                     textfieldcontroller: adv.titleController,
                                     hintText: 'enter task title',
@@ -64,10 +67,8 @@ class _AddScreenState extends State<AddScreen> {
                                       adv.titleText = value;
                                     },
                                   ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  straightField(
+                                  verticalSpaceTiny,
+                                  StraightField(
                                       textfieldValidator: adv.textValidator,
                                       textfieldcontroller:
                                           adv.descriptionController,
@@ -84,10 +85,10 @@ class _AddScreenState extends State<AddScreen> {
                                           text: 'Category',
                                         ),
                                         DropdownButton(
-                                          iconEnabledColor: Colors.blueGrey,
+                                          iconEnabledColor: kBluegrey,
                                           itemHeight: 50.0.h,
 
-                                          dropdownColor: Colors.blueGrey,
+                                          dropdownColor: kBluegrey,
                                           // Initial Value
                                           value: adv.dropdownvalue,
 
@@ -125,6 +126,7 @@ class _AddScreenState extends State<AddScreen> {
                                           onTap: () {
                                             showDatePicker(adv);
                                           },
+                                          // ignore: unnecessary_null_comparison
                                           child: adv.selectedDate == null
                                               ? AutoSizeText(
                                                   DateFormat.yMMMd()
@@ -194,8 +196,7 @@ class _AddScreenState extends State<AddScreen> {
                                       EdgeInsets.symmetric(horizontal: 16.0.w),
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                          elevation: 2,
-                                          primary: Colors.blueGrey),
+                                          elevation: 2, primary: kBluegrey),
                                       onPressed: () async {
                                         if (_formKey.currentState!.validate()) {
                                           try {
@@ -210,10 +211,9 @@ class _AddScreenState extends State<AddScreen> {
 
                                             Navigator.pop(context);
                                           } catch (e) {
-                                            print(e);
+                                            debugPrint(e.toString());
                                           }
                                         }
-                                        ;
                                       },
                                       child: Center(
                                         child: Text(
@@ -234,7 +234,7 @@ class _AddScreenState extends State<AddScreen> {
         builder: (BuildContext builder) {
           return Container(
             height: 220.h,
-            color: Colors.white,
+            color: kBluegrey,
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (value) {

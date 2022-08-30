@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -49,7 +48,7 @@ class AddViewModel extends ChangeNotifier {
     final hour = selectedTime.hour.toString().padLeft(2, '0');
     final min = selectedTime.minute.toString().padLeft(2, '0');
     // ignore: non_constant_identifier_names
-    final Datetimee = ('${hour}:${min}').toString();
+    final Datetimee = ('$hour:$min').toString();
 
     return Datetimee;
   }

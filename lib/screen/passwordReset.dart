@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wow/buisness_logic/view_model/resertWordViewModel.dart';
-import 'package:wow/widget/reuse_widget.dart';
+import 'package:wow/utils/ui_helpers.dart';
+import 'package:wow/widget/buttons/signlog_button.dart';
 
 import '../service/service_locator.dart';
+import '../widget/TextFormField/emailTextField.dart';
 
 class PasswordReset extends StatefulWidget {
   const PasswordReset({Key? key}) : super(key: key);
@@ -21,7 +23,6 @@ class _PasswordResetState extends State<PasswordReset> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     reset.emailController.dispose();
     super.dispose();
   }
@@ -41,10 +42,10 @@ class _PasswordResetState extends State<PasswordReset> {
               },
               child: CircleAvatar(
                   radius: 30.r,
-                  backgroundColor: Colors.blueGrey[100],
+                  backgroundColor: kLightBluegrey,
                   child: Icon(
                     Icons.arrow_upward,
-                    color: Colors.blueGrey,
+                    color: kBluegrey,
                     size: 40.r,
                   )),
             ),
@@ -55,7 +56,7 @@ class _PasswordResetState extends State<PasswordReset> {
                 AutoSizeText(
                   'A password reset mail 📩 has been sent, please check inbox and verify(check spam if mail doesn\'t appear on inbox) ',
                   minFontSize: 20,
-                  style: TextStyle(color: Colors.blueGrey, fontSize: 25.sp),
+                  style: TextStyle(color: kBluegrey, fontSize: 25.sp),
                 ),
                 SizedBox(
                   height: 20.h,
@@ -74,7 +75,7 @@ class _PasswordResetState extends State<PasswordReset> {
                       emailcontroller: reset.emailController,
                       validator: reset.emailValidator,
                     )),
-                signInlogInwidget(
+                SignLog(
                     todoText: 'Reset password',
                     todo: () async {
                       if (_formKey.currentState!.validate()) {
@@ -105,10 +106,10 @@ class _PasswordResetState extends State<PasswordReset> {
       desc: errorMsg,
       buttons: [
         DialogButton(
-          color: Colors.blueGrey,
+          color: kBluegrey,
           child: Text(
             "OK",
-            style: TextStyle(color: Colors.white, fontSize: 20.sp),
+            style: TextStyle(color: kWhite, fontSize: 20.sp),
           ),
           onPressed: () => Navigator.pop(context),
           width: 120.w,

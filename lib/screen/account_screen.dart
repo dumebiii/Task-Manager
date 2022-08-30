@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
-import 'package:wow/widget/reuse_widget.dart';
+import 'package:wow/utils/ui_helpers.dart';
+import 'package:wow/widget/buttons/signlog_button.dart';
+import 'package:wow/widget/extras/accountinfo.dart';
 
 import '../buisness_logic/view_model/Homeviewmodel.dart';
 import '../buisness_logic/view_model/accountViewModel.dart';
@@ -25,7 +27,6 @@ class _AccountState extends State<Account> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     accinfo.fnamecontroller.dispose();
     accinfo.lnamecontroller.dispose();
     accinfo.cityValue.dispose();
@@ -43,13 +44,12 @@ class _AccountState extends State<Account> {
         create: (context) => AccountViewModel(),
         child: Consumer<AccountViewModel>(builder: (context, acccInfo, child) {
           return Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: kWhite,
               body: FutureBuilder(
                   future: homeViewModel.fetchdetails(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       dynamic data = snapshot.data;
-                      print(data);
 
                       // userInfo: data['fname'],
                       accinfo.fnamecontroller = TextEditingController(
@@ -81,10 +81,10 @@ class _AccountState extends State<Account> {
                                       },
                                       child: CircleAvatar(
                                           radius: 30.r,
-                                          backgroundColor: Colors.blueGrey[100],
+                                          backgroundColor: kLightBluegrey,
                                           child: Icon(
                                             Icons.arrow_upward,
-                                            color: Colors.blueGrey,
+                                            color: kBluegrey,
                                             size: 40.r,
                                           )),
                                     ),
@@ -102,7 +102,7 @@ class _AccountState extends State<Account> {
                                               textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 35.sp,
-                                                  color: Colors.blueGrey,
+                                                  color: kBluegrey,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
@@ -110,7 +110,7 @@ class _AccountState extends State<Account> {
                                               textScaleFactor: 1.0,
                                               style: TextStyle(
                                                   fontSize: 12.sp,
-                                                  color: Colors.red,
+                                                  color: kRed,
                                                   fontStyle: FontStyle.italic),
                                             ),
                                             SizedBox(
@@ -126,15 +126,15 @@ class _AccountState extends State<Account> {
                                             SizedBox(
                                               height: 10.h,
                                             ),
-                                            accInfoWidget(
+                                            Accountinfo(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller:
                                                   accinfo.fnamecontroller,
-                                              cursorColor: Colors.white,
+                                              cursorColor: kWhite,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: kWhite,
                                                   fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
@@ -159,15 +159,15 @@ class _AccountState extends State<Account> {
                                             SizedBox(
                                               height: 10.h,
                                             ),
-                                            accInfoWidget(
+                                            Accountinfo(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller:
                                                   accinfo.lnamecontroller,
-                                              cursorColor: Colors.white,
+                                              cursorColor: kWhite,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: kWhite,
                                                   fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
@@ -192,14 +192,14 @@ class _AccountState extends State<Account> {
                                             SizedBox(
                                               height: 10.h,
                                             ),
-                                            accInfoWidget(
+                                            Accountinfo(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.countryValue,
-                                              cursorColor: Colors.white,
+                                              cursorColor: kWhite,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: kWhite,
                                                   fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
@@ -224,14 +224,14 @@ class _AccountState extends State<Account> {
                                             SizedBox(
                                               height: 10.h,
                                             ),
-                                            accInfoWidget(
+                                            Accountinfo(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.stateValue,
-                                              cursorColor: Colors.white,
+                                              cursorColor: kWhite,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: kWhite,
                                                   fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
@@ -256,14 +256,14 @@ class _AccountState extends State<Account> {
                                             SizedBox(
                                               height: 10.h,
                                             ),
-                                            accInfoWidget(
+                                            Accountinfo(
                                                 childd: TextFormField(
                                               validator:
                                                   acccInfo.textfieldValidator,
                                               controller: accinfo.cityValue,
-                                              cursorColor: Colors.white,
+                                              cursorColor: kWhite,
                                               style: TextStyle(
-                                                  color: Colors.white,
+                                                  color: kWhite,
                                                   fontSize: 25.sp / scaleFactor,
                                                   fontWeight: FontWeight.bold),
                                               decoration: const InputDecoration(
@@ -278,7 +278,7 @@ class _AccountState extends State<Account> {
                                             SizedBox(
                                               height: 20.h,
                                             ),
-                                            signInlogInwidget(
+                                            SignLog(
                                                 todoText: 'SAVE',
                                                 todo: () async {
                                                   if (_formKey.currentState!

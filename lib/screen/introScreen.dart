@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wow/utils/ui_helpers.dart';
 
 class LoadScreen extends StatefulWidget {
   const LoadScreen({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _LoadScreenState extends State<LoadScreen> {
                         height: 50.h,
                         width: 50.w,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: kWhite,
                             borderRadius: BorderRadius.circular(25.r)),
                         child: TextButton(
                           onPressed: () {
@@ -59,7 +60,7 @@ class _LoadScreenState extends State<LoadScreen> {
                         height: 50.h,
                         width: 50.w,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: kWhite,
                             borderRadius: BorderRadius.circular(25.r)),
                         child: TextButton(
                           onPressed: () {

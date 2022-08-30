@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:wow/utils/ui_helpers.dart';
 
 import '../buisness_logic/view_model/userinfoViewmodel.dart';
 import '../service/service_locator.dart';
-import '../widget/reuse_widget.dart';
+import '../widget/TextFormField/custom_field.dart';
 
 class Userdd extends StatefulWidget {
   const Userdd({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _UserddState extends State<Userdd> {
         create: (context) => UserViewModel(),
         child: Consumer<UserViewModel>(builder: (context, userInfo, child) {
           return Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: kWhite,
               body: SingleChildScrollView(
                   child: SafeArea(
                 child: Padding(
@@ -49,10 +50,10 @@ class _UserddState extends State<Userdd> {
                               },
                               child: CircleAvatar(
                                   radius: 30.r,
-                                  backgroundColor: Colors.blueGrey[100],
+                                  backgroundColor: kLightBluegrey,
                                   child: Icon(
                                     Icons.arrow_back,
-                                    color: Colors.blueGrey,
+                                    color: kBluegrey,
                                     size: 40.r,
                                   )),
                             ),
@@ -88,7 +89,7 @@ class _UserddState extends State<Userdd> {
                                       SizedBox(
                                         height: 10.h,
                                       ),
-                                      CustomTextField(
+                                      CustomField(
                                         textfieldcontroller:
                                             userInfo.fnameController,
                                         textfieldValidator:
@@ -106,7 +107,7 @@ class _UserddState extends State<Userdd> {
                                       SizedBox(
                                         height: 10.h,
                                       ),
-                                      CustomTextField(
+                                      CustomField(
                                         textfieldcontroller:
                                             userInfo.lnameController,
                                         textfieldValidator:
@@ -141,7 +142,7 @@ class _UserddState extends State<Userdd> {
                                           dropdownDecoration: BoxDecoration(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(10.r)),
-                                              color: Colors.blueGrey[100],
+                                              color: kLightBluegrey,
                                               border: Border.all(
                                                   color: Colors.grey.shade300,
                                                   width: 1.w)),
@@ -170,19 +171,19 @@ class _UserddState extends State<Userdd> {
                                           cityDropdownLabel: "City",
 
                                           selectedItemStyle: TextStyle(
-                                            color: Colors.black,
+                                            color: kBlack,
                                             fontSize: 19.sp,
                                           ),
 
                                           ///DropdownDialog Heading style [OPTIONAL PARAMETER]
                                           dropdownHeadingStyle: TextStyle(
-                                              color: Colors.black,
+                                              color: kBlack,
                                               fontSize: 17.sp,
                                               fontWeight: FontWeight.bold),
 
                                           ///DropdownDialog Item style [OPTIONAL PARAMETER]
                                           dropdownItemStyle: TextStyle(
-                                            color: Colors.black,
+                                            color: kBlack,
                                             fontSize: 14.sp,
                                           ),
 
@@ -233,13 +234,13 @@ class _UserddState extends State<Userdd> {
                                         autofocus: true,
                                         style: ElevatedButton.styleFrom(
                                           minimumSize: Size(0.w, 50.h),
-                                          primary: Colors.blueGrey[100],
+                                          primary: kLightBluegrey,
                                           elevation: 2,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(15.r),
                                             side: BorderSide(
-                                                color: Colors.transparent,
+                                                color: kTransparent,
                                                 width: 2.w),
                                           ),
                                         ),
@@ -253,7 +254,7 @@ class _UserddState extends State<Userdd> {
                                                           userInfo.selectedDate)
                                                       .toString(),
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: kBlack,
                                                   fontSize: 15.sp,
                                                   fontWeight: FontWeight.w400),
                                             )
@@ -261,7 +262,8 @@ class _UserddState extends State<Userdd> {
                                         ),
                                         onPressed: () {
                                           showDatePicker(userInfo);
-                                          print(userInfo.selectedDate);
+                                          debugPrint(
+                                              userInfo.selectedDate.toString());
                                         },
                                       ),
                                       SizedBox(
@@ -281,7 +283,7 @@ class _UserddState extends State<Userdd> {
                                             },
                                             style: ElevatedButton.styleFrom(
                                               minimumSize: Size(0.w, 50.h),
-                                              primary: Colors.blueGrey,
+                                              primary: kBluegrey,
                                               elevation: 10,
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -292,7 +294,7 @@ class _UserddState extends State<Userdd> {
                                               child: Text(
                                                 'Continue ',
                                                 style: TextStyle(
-                                                    color: Colors.white,
+                                                    color: kWhite,
                                                     fontSize: 20.sp),
                                               ),
                                             ),
@@ -310,7 +312,7 @@ class _UserddState extends State<Userdd> {
         builder: (BuildContext builder) {
           return Container(
             height: MediaQuery.of(context).copyWith().size.height * 0.25.h,
-            color: Colors.white,
+            color: kWhite,
             child: CupertinoDatePicker(
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (value) {

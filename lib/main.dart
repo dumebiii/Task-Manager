@@ -18,14 +18,10 @@ import 'package:wow/screen/signIn.dart';
 import 'package:wow/screen/signUp.dart';
 import 'package:wow/screen/user_info.dart';
 import 'package:wow/screen/verifyEmail.dart';
-// import 'package:wow/service/checkConnect.dart';
-import 'package:wow/service/internetCheck.dart';
 import 'package:wow/service/service_locator.dart';
-// import 'package:wow/service/connection.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wow/utils/shared_prefence.dart';
-import 'package:wow/widget/reuse_widget.dart';
-
+import 'package:wow/widget/buttons/signlog_button.dart';
 import 'screen/passwordReset.dart';
 import 'service/firebase_services.dart';
 
@@ -112,7 +108,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     CheckUserConnection();
     super.initState();
   }
@@ -169,7 +164,7 @@ class _MainPageState extends State<MainPage> {
                           SizedBox(
                             height: 5.h,
                           ),
-                          signInlogInwidget(
+                          SignLog(
                             todoText: 'reload',
                             todo: () {
                               setState(() {

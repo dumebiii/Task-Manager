@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wow/utils/error_codes.dart';
 
 import '../../service/firebase_services.dart';
 import '../../service/service_locator.dart';

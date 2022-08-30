@@ -7,10 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:wow/buisness_logic/model/note.dart';
 import 'package:wow/buisness_logic/view_model/notesoperation.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:wow/utils/ui_helpers.dart';
+import 'package:wow/widget/buttons/signlog_button.dart';
+import 'package:wow/widget/gestures/Category.dart';
 
 import '../buisness_logic/view_model/Homeviewmodel.dart';
 import '../service/service_locator.dart';
-import '../widget/reuse_widget.dart';
+import '../widget/extras/TextWidgets/textWidget.dart';
 import 'add_screen.dart';
 import 'menuPage.dart';
 
@@ -26,7 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final NotesOpertaion notesOpertaion = locator<NotesOpertaion>();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     notesOpertaion.loadDataFromLocalStorage();
   }
@@ -39,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // return Consumer<NotesOpertaion>(builder: (context, data, child) {
           return AdvancedDrawer(
             drawer: const Menu(),
-            backdropColor: Colors.blueGrey,
+            backdropColor: kWhite,
             controller: _advancedDrawerController,
             animationCurve: Curves.easeInOut,
             animationDuration: const Duration(milliseconds: 300),
@@ -52,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // Keep in mind that it may cause animation jerks.
               boxShadow: <BoxShadow>[
                 BoxShadow(
-                  color: Colors.black,
+                  color: kBlack,
                   blurRadius: 0.r,
                 ),
               ],
@@ -61,11 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: WillPopScope(
               onWillPop: _onWillPop,
               child: Scaffold(
-                  backgroundColor: Colors.white,
+                  backgroundColor: kWhite,
                   floatingActionButton: FloatingActionButton(
                     onPressed: () {
                       showModalBottomSheet(
-                          backgroundColor: Colors.white,
+                          backgroundColor: kWhite,
                           context: context,
                           builder: (context) {
                             return const AddScreen();
@@ -74,9 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Icon(
                       Icons.add,
                       size: 40,
-                      color: Colors.white,
+                      color: kWhite,
                     ),
-                    backgroundColor: Colors.blueGrey,
+                    backgroundColor: kBluegrey,
                   ),
                   body: FutureBuilder(
                       future: homeInfo.fetchdetails(),
@@ -111,12 +113,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                                   ? Icon(
                                                       Icons.clear,
                                                       size: 50.r,
-                                                      color: Colors.blueGrey,
+                                                      color: kBluegrey,
                                                     )
                                                   : Icon(
                                                       Icons.dashboard_outlined,
                                                       size: 50.r,
-                                                      color: Colors.blueGrey,
+                                                      color: kBluegrey,
                                                     ),
                                             );
                                           })),
@@ -131,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
                                         fontSize: 30.sp,
-                                        color: Colors.blueGrey,
+                                        color: kBluegrey,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   SizedBox(
@@ -142,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     textScaleFactor: 1.0,
                                     style: TextStyle(
                                         fontSize: 20.sp,
-                                        color: Colors.blueGrey,
+                                        color: kBluegrey,
                                         fontWeight: FontWeight.w400),
                                   ),
                                   SizedBox(
@@ -154,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         builder: (context, notee, child) {
                                       return Row(
                                         children: [
-                                          homeCatWidg(
+                                          Category(
                                             catText: 'Personal',
                                             text:
                                                 "${notee.getPersonal().length.toString()} tasks",
@@ -166,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           SizedBox(
                                             width: 15.w,
                                           ),
-                                          homeCatWidg(
+                                          Category(
                                             catText: 'Business',
                                             text:
                                                 "${notee.getBuisness().length.toString()} tasks",
@@ -187,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     textScaleFactor: 1.0,
                                     style: TextStyle(
                                         fontSize: 25.sp,
-                                        color: Colors.blueGrey,
+                                        color: kBluegrey,
                                         fontWeight: FontWeight.w500),
                                   ),
                                   SizedBox(
@@ -217,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 const Center(
                                     child: CircularProgressIndicator()),
-                                signInlogInwidget(
+                                SignLog(
                                     todoText: 'Sign Out ',
                                     todo: () async {
                                       await homeInfo.firebaseservice.logOut();
@@ -271,7 +273,7 @@ class NotesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isStrike = false;
+    // bool isStrike = false;
 
     return Consumer<NotesOpertaion>(builder: (context, nott, child) {
       return GestureDetector(
@@ -283,10 +285,10 @@ class NotesCard extends StatelessWidget {
             desc: notes.description,
             buttons: [
               DialogButton(
-                color: Colors.blueGrey,
+                color: kBluegrey,
                 child: Text(
                   "SEEN",
-                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                  style: TextStyle(color: kWhite, fontSize: 20.sp),
                 ),
                 onPressed: () => Navigator.pop(context),
                 width: 120.w,
@@ -298,7 +300,7 @@ class NotesCard extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           height: 100.h,
           decoration: BoxDecoration(
-            color: Colors.blueGrey,
+            color: kBluegrey,
             borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
@@ -309,10 +311,10 @@ class NotesCard extends StatelessWidget {
                 trailing: IconButton(
                   onPressed: () async {
                     await nott.delNewNote(notes);
-                    print(notes);
+                    debugPrint(notes.toString());
                   },
                   icon: const Icon(Icons.delete),
-                  color: Colors.red,
+                  color: kRed,
                 ),
                 title: Text(
                   notes.title, maxLines: 1,
@@ -321,7 +323,7 @@ class NotesCard extends StatelessWidget {
                   softWrap: false,
 
                   style: TextStyle(
-                      color: Colors.white,
+                      color: kWhite,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold),
                   // style: TextStyle(decoration: TextDecoration.lineThrough),
@@ -332,7 +334,7 @@ class NotesCard extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w300,
-                      color: Colors.white),
+                      color: kWhite),
                   // minFontSize: 15,
                   textScaleFactor: 1.0,
                   maxLines: 1,
@@ -348,14 +350,14 @@ class NotesCard extends StatelessWidget {
                       // minFontSize: 10,
                       textScaleFactor: 1.0,
                       style: TextStyle(
-                          color: Colors.white,
+                          color: kWhite,
                           fontSize: 17.sp,
                           fontWeight: FontWeight.bold)),
                   Row(
                     children: [
                       const Icon(
                         Icons.calendar_month_rounded,
-                        color: Colors.white,
+                        color: kWhite,
                       ),
                       SizedBox(
                         width: 5.w,
@@ -365,7 +367,7 @@ class NotesCard extends StatelessWidget {
                           // minFontSize: 10,
                           textScaleFactor: 1.0,
                           style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w400)),
                     ],
@@ -374,7 +376,7 @@ class NotesCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.access_time_outlined,
-                        color: Colors.white,
+                        color: kWhite,
                       ),
                       SizedBox(
                         width: 5.w,
@@ -384,7 +386,7 @@ class NotesCard extends StatelessWidget {
                           // minFontSize: 10,
                           textScaleFactor: 1.0,
                           style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w400)),
                     ],

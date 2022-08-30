@@ -3,10 +3,8 @@ import 'package:wow/buisness_logic/view_model/loginViewmodel.dart';
 import 'package:wow/buisness_logic/view_model/notesoperation.dart';
 import 'package:wow/buisness_logic/view_model/registerViewModel.dart';
 import 'package:wow/buisness_logic/view_model/resertWordViewModel.dart';
-import 'package:wow/main.dart';
 
 import 'package:wow/service/firebase_services.dart';
-import 'package:wow/service/internetCheck.dart';
 
 import '../buisness_logic/view_model/Homeviewmodel.dart';
 import '../buisness_logic/view_model/accountViewModel.dart';

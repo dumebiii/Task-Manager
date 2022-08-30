@@ -1,16 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wow/screen/home_screen.dart';
-import 'package:wow/utils/error_codes.dart';
+
+import 'package:wow/utils/ui_helpers.dart';
+import 'package:wow/widget/buttons/google_button.dart';
+import 'package:wow/widget/buttons/signlog_button.dart';
 
 import '../buisness_logic/view_model/loginViewmodel.dart';
 import '../service/service_locator.dart';
-import '../widget/reuse_widget.dart';
+import '../widget/TextFormField/emailTextField.dart';
+import '../widget/TextFormField/passwordTextField.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -35,7 +39,7 @@ class _SignInState extends State<SignIn> {
     return ChangeNotifierProvider<LoginViewModel>(
         create: (context) => logi,
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: kWhite,
           body: SingleChildScrollView(
             child: SafeArea(
                 child: Padding(
@@ -51,10 +55,10 @@ class _SignInState extends State<SignIn> {
                       },
                       child: CircleAvatar(
                           radius: 30.r,
-                          backgroundColor: Colors.blueGrey[100],
+                          backgroundColor: kLightBluegrey,
                           child: Icon(
                             Icons.arrow_back,
-                            color: Colors.blueGrey,
+                            color: kBluegrey,
                             size: 40.r,
                           )),
                     ),
@@ -63,8 +67,8 @@ class _SignInState extends State<SignIn> {
                     ),
                     Text(
                       'Log - in',
-                      style: TextStyle(
-                          fontSize: 40.sp, fontWeight: FontWeight.bold),
+                      style: kTitleTextStyle.copyWith(
+                          fontSize: 37.sp, color: kBlack),
                     ),
                     SizedBox(
                       height: 30.h,
@@ -123,7 +127,7 @@ class _SignInState extends State<SignIn> {
                     Consumer<LoginViewModel>(builder: (context, logi, child) {
                       return Column(
                         children: [
-                          signInlogInwidget(
+                          SignLog(
                             todoText: 'Log in',
                             todo: () async {
                               if (_formKey.currentState!.validate()) {
@@ -160,7 +164,7 @@ class _SignInState extends State<SignIn> {
                               }
                             },
                           ),
-                          googlesignWidget(todo: () async {
+                          GoogleSign(todo: () async {
                             showDialog(
                                 context: context,
                                 barrierDismissible: false,
@@ -195,8 +199,7 @@ class _SignInState extends State<SignIn> {
                       onTap: () => Navigator.pushNamed(context, '/reset'),
                       child: Text(
                         ' Reset Password?',
-                        style:
-                            TextStyle(color: Colors.blueGrey, fontSize: 19.sp),
+                        style: TextStyle(color: kBluegrey, fontSize: 19.sp),
                       ),
                     )),
                     SizedBox(
@@ -206,13 +209,12 @@ class _SignInState extends State<SignIn> {
                       child: RichText(
                         text: TextSpan(
                             text: 'Dont have an account?',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 19.sp),
+                            style: TextStyle(color: kBlack, fontSize: 19.sp),
                             children: <TextSpan>[
                               TextSpan(
                                   text: ' Sign Up',
                                   style: TextStyle(
-                                      color: Colors.blueGrey, fontSize: 19.sp),
+                                      color: kBluegrey, fontSize: 19.sp),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       Navigator.pushNamed(context, '/signup');
@@ -236,10 +238,10 @@ class _SignInState extends State<SignIn> {
       desc: errorMsg,
       buttons: [
         DialogButton(
-          color: Colors.blueGrey,
+          color: kBluegrey,
           child: Text(
             "OK",
-            style: TextStyle(color: Colors.white, fontSize: 20.sp),
+            style: TextStyle(color: kWhite, fontSize: 20.sp),
           ),
           onPressed: () => Navigator.pop(context),
           width: 120.w,

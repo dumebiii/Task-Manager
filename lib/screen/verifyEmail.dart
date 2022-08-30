@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wow/screen/home_screen.dart';
+import 'package:wow/utils/ui_helpers.dart';
 
 import '../service/firebase_services.dart';
 import '../service/service_locator.dart';
@@ -23,11 +23,10 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
   @override
   void initState() {
-    // TODO: implement initState
     user = _firebaseservice.auth.currentUser;
     user!.sendEmailVerification();
 
-    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       checkEmailVerified();
     });
 
@@ -36,7 +35,6 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     timer!.cancel();
     super.dispose();
   }
@@ -51,7 +49,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
           child: AutoSizeText(
             'An verification mail 📩 has been sent to ${user!.email} please verify.',
             minFontSize: 20,
-            style: TextStyle(color: Colors.blueGrey, fontSize: 25.sp),
+            style: TextStyle(color: kBluegrey, fontSize: 25.sp),
           ),
         ),
       ),

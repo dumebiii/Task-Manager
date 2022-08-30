@@ -2,7 +2,6 @@ import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wow/buisness_logic/model/note.dart';
 
 import '../../utils/shared_prefence.dart';
@@ -63,7 +62,6 @@ class NotesOpertaion extends ChangeNotifier {
 
   List<Note> loadDataFromLocalStorage() {
     List<String>? nottes = SharedPreferencesHelper.getStringList('list');
-    print(nottes);
 
     if (nottes != null) {
       notes = nottes.map((item) => Note.fromMap(json.decode(item))).toList();

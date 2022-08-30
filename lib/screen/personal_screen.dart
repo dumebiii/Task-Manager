@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:wow/utils/ui_helpers.dart';
 
 import '../buisness_logic/model/note.dart';
 import '../buisness_logic/view_model/notesoperation.dart';
@@ -17,7 +18,7 @@ class _PersonalState extends State<Personal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kWhite,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -29,10 +30,10 @@ class _PersonalState extends State<Personal> {
                 },
                 child: CircleAvatar(
                     radius: 30.r,
-                    backgroundColor: Colors.blueGrey[100],
+                    backgroundColor: kLightBluegrey,
                     child: Icon(
                       Icons.arrow_upward,
-                      color: Colors.blueGrey,
+                      color: kBluegrey,
                       size: 40.r,
                     )),
               ),
@@ -44,7 +45,7 @@ class _PersonalState extends State<Personal> {
                 textScaleFactor: 1.0,
                 style: TextStyle(
                     fontSize: 28.sp,
-                    color: Colors.blueGrey,
+                    color: kBluegrey,
                     fontWeight: FontWeight.bold),
               ),
               Consumer<NotesOpertaion>(builder: (context, data, child) {
@@ -72,7 +73,7 @@ class NotessCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isStrike = false;
+    // bool isStrike = false;
 
     return Consumer<NotesOpertaion>(builder: (context, nott, child) {
       return GestureDetector(
@@ -86,7 +87,7 @@ class NotessCard extends StatelessWidget {
               DialogButton(
                 child: Text(
                   "S E E N",
-                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                  style: TextStyle(color: kWhite, fontSize: 20.sp),
                 ),
                 onPressed: () => Navigator.pop(context),
                 width: 120.w,
@@ -98,7 +99,7 @@ class NotessCard extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           height: 100.h,
           decoration: BoxDecoration(
-            color: Colors.blueGrey,
+            color: kBluegrey,
             borderRadius: BorderRadius.circular(15.r),
           ),
           child: Column(
@@ -111,7 +112,7 @@ class NotessCard extends StatelessWidget {
                     nott.delNewNote(notes);
                   },
                   icon: const Icon(Icons.delete),
-                  color: Colors.red,
+                  color: kRed,
                 ),
                 title: Text(
                   notes.title, maxLines: 1,
@@ -120,7 +121,7 @@ class NotessCard extends StatelessWidget {
                   softWrap: false,
 
                   style: TextStyle(
-                      color: Colors.white,
+                      color: kWhite,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold),
                   // style: TextStyle(decoration: TextDecoration.lineThrough),
@@ -134,7 +135,7 @@ class NotessCard extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w300,
-                      color: Colors.white),
+                      color: kWhite),
                 ),
               ),
               Row(
@@ -143,14 +144,14 @@ class NotessCard extends StatelessWidget {
                   Text(notes.choice,
                       textScaleFactor: 1.0,
                       style: TextStyle(
-                          color: Colors.white,
+                          color: kWhite,
                           fontSize: 17.sp,
                           fontWeight: FontWeight.bold)),
                   Row(
                     children: [
                       Icon(
                         Icons.calendar_month_rounded,
-                        color: Colors.white,
+                        color: kWhite,
                         size: 20.r,
                       ),
                       SizedBox(
@@ -159,7 +160,7 @@ class NotessCard extends StatelessWidget {
                       Text(notes.datee,
                           textScaleFactor: 1.0,
                           style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w400)),
                     ],
@@ -168,7 +169,7 @@ class NotessCard extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.access_time_outlined,
-                        color: Colors.white,
+                        color: kWhite,
                         size: 20.r,
                       ),
                       SizedBox(
@@ -177,7 +178,7 @@ class NotessCard extends StatelessWidget {
                       Text(notes.dateTime,
                           textScaleFactor: 1.0,
                           style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w400)),
                     ],
