@@ -4,10 +4,10 @@
 
 ## IMAGES
 
-![image info](screenshot/screen1.png)
+![image info](Screenshot/screen1.png)
 
-![image info](screenshot/screen2.png)
+![image info](Screenshot/screen2.png)
 
-![image info](screenshot/screen3.png)
+![image info](Screenshot/screen3.png)
 
 
